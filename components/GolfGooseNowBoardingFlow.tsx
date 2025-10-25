@@ -125,7 +125,7 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                       <p className="text-xs text-zinc-500">Step 2/13</p>
                   </div>
-                  <CardContent className="space-y-6 text-center p-6">
+                  <CardContent className="space-y-4 text-center p-6">
                     {/* Main Hook */}
                     <div className="space-y-4">
                       <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>See Golf Goose in Action</motion.h2>
@@ -192,7 +192,7 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                     <p className="text-xs text-zinc-500">Step 3/14</p>
                   </div>
-                  <CardContent className="space-y-6 text-center p-6">
+                  <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>What Resonates With You?</motion.h2>
                     <p className="text-zinc-400 text-sm pt-2">Pick the swing faults you fight most. We'll create personalized drills just for you.</p>
                     
@@ -225,7 +225,7 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                     <p className="text-xs text-zinc-500">Step 4/14</p>
                   </div>
-                  <CardContent className="space-y-6 text-center p-6">
+                  <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Your Personalized Practice Plan</motion.h2>
                     <p className="text-zinc-400 text-sm pt-2">Drills, feels, and games designed for your swing faults</p>
 
@@ -273,7 +273,7 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                     <p className="text-xs text-zinc-500">Step 4/11</p>
                   </div>
-                  <CardContent className="space-y-6 text-center p-6">
+                  <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Your Personalized Practice Plan</motion.h2>
                     <p className="text-zinc-400 text-sm pt-2">Drills, feels, and games designed for your swing faults</p>
 
@@ -321,7 +321,7 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                     <p className="text-xs text-zinc-500">Step 5/11</p>
                   </div>
-                  <CardContent className="space-y-6 text-center p-6">
+                  <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Create Your Account</motion.h2>
                     <p className="text-zinc-400 text-sm pt-2">Save your progress and sync across devices</p>
                     
@@ -383,7 +383,7 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                     <p className="text-xs text-zinc-500">Step 6/11</p>
                   </div>
-                  <CardContent className="space-y-6 text-center p-6">
+                  <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Flight Prep: Calibrate Your Game</motion.h2>
                     <p className="text-zinc-400 text-sm pt-2">Set your skill and handicap so Goose can personalize drills and targets.</p>
                     <div className="space-y-3 text-left">
@@ -427,7 +427,7 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                     <p className="text-xs text-zinc-500">Step 7/11</p>
                   </div>
-                  <CardContent className="space-y-6 text-center p-6">
+                  <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Define Your Mission</motion.h2>
                     <p className="text-zinc-400 text-sm pt-2">Pick up to 3 goals for this season.</p>
                     
@@ -460,7 +460,7 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                     <p className="text-xs text-zinc-500">Step 8/11</p>
                   </div>
-                  <CardContent className="space-y-6 text-center p-6">
+                  <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Meet Goose</motion.h2>
                     <p className="text-zinc-400 text-sm pt-2">Enable mic and speaker to talk with Goose and preview the AI chat experience.</p>
                     <div className="bg-zinc-800 p-4 rounded-xl border border-zinc-700 text-left text-sm">
@@ -490,7 +490,7 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                     <p className="text-xs text-zinc-500">Step 9/11</p>
                   </div>
-                  <CardContent className="space-y-6 text-center p-6">
+                  <CardContent className="space-y-4 text-center p-6">
                     <CustomizingFlightPlan onComplete={() => setStep(10)} seconds={3} />
                   </CardContent>
                 </Card>
@@ -508,7 +508,7 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                     <p className="text-xs text-zinc-500">Step 10/11</p>
                   </div>
-                  <CardContent className="space-y-6 text-center p-6">
+                  <CardContent className="space-y-4 text-center p-6">
                     <motion.h1 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>You're Cleared for Takeoff</motion.h1>
                     <p className="text-zinc-400 text-sm pt-2">You're all set! Goose is ready to help you practice smarter, play better, and have more fun on the course.</p>
                     
@@ -715,7 +715,7 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                     <p className="text-xs text-zinc-500">Step 12/12</p>
                   </div>
-                  <CardContent className="space-y-6 text-center p-6">
+                  <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Check Your Bags</motion.h2>
                     <p className="text-zinc-400 text-sm pt-2">Pick what you practice with most to get personalized recommendations.</p>
                     <div className="grid grid-cols-3 gap-3">
