@@ -16,12 +16,12 @@ export default function GolfGooseNowBoardingFlow() {
   const [handicap, setHandicap] = useState("");
   const [ghin, setGhin] = useState("");
   const GOALS = ['Driving Accuracy','Distance','Consistency','Short Game','Putting','Mental Game'];
-  const [selectedGoals, setSelectedGoals] = useState([]);
+  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const MISSES = ['Slice City','Hook the Ball Off the Planet','Fat Shots','Thin Shots','Chipping Y*ps','Three-Putt King','The Shanks','Tempo Troubles'];
-  const [selectedMisses, setSelectedMisses] = useState([]);
+  const [selectedMisses, setSelectedMisses] = useState<string[]>([]);
   const [audioEnabled, setAudioEnabled] = useState(false);
   const CLUBS = ['Driver','3 Wood','Hybrid','Irons','Wedges','Putter'];
-  const [selectedClubs, setSelectedClubs] = useState([]);
+  const [selectedClubs, setSelectedClubs] = useState<string[]>([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
