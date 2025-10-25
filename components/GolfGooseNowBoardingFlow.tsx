@@ -34,7 +34,7 @@ export default function GolfGooseNowBoardingFlow() {
     transition: { duration: 0.6, ease: "easeInOut" }
   };
 
-  const toggleIn = (arr, value, max) => {
+  const toggleIn = (arr: string[], value: string, max?: number): string[] => {
     const exists = arr.includes(value);
     if (exists) return arr.filter(v => v !== value);
     if (max && arr.length >= max) return arr;
