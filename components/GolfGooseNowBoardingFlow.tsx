@@ -369,32 +369,29 @@ export default function GolfGooseNowBoardingFlow() {
             )}
 
             {step === 7 && (
-              <motion.div key="slide7" {...fadeIn}>
+              <motion.div key="slide8" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
                   <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
-                      <span className="text-green-400 text-lg">🏆</span>
-                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Flight Manifest</p>
+                      <span className="text-green-400 text-lg">🎙️</span>
+                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Cockpit Check</p>
                     </div>
-                    <p className="text-xs text-zinc-500">Step 7/11</p>
+                    <p className="text-xs text-zinc-500">Step 7/14</p>
                   </div>
                   <CardContent className="space-y-4 text-center p-6">
-                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Define Your Mission</motion.h2>
-                    <p className="text-zinc-400 text-sm pt-2">Pick up to 3 goals for this season.</p>
-                    
-                    <div className="grid grid-cols-2 gap-3 mt-6">
-                      {GOALS.map((goal) => (
-                        <Button key={goal} onClick={() => setSelectedGoals(prev => toggleIn(prev, goal, 3))} className={`rounded-xl text-sm border ${selectedGoals.includes(goal) ? 'bg-green-500 text-black border-green-500' : 'bg-zinc-800 text-white border-zinc-700 hover:bg-green-600'}`}>{goal}</Button>
-                      ))}
+                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Meet Goose</motion.h2>
+                    <p className="text-zinc-400 text-sm pt-2">Enable mic and speaker to talk with Goose and preview the AI chat experience.</p>
+                    <div className="bg-zinc-800 p-4 rounded-xl border border-zinc-700 text-left text-sm">
+                      <p className="text-green-400 font-semibold mb-1">Sample Chat</p>
+                      <p className="text-zinc-300 italic">Goose: "I noticed your tempo tends to quicken under pressure. Want to try a rhythm drill next?"</p>
                     </div>
-
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="flex gap-3">
-                        <Button onClick={() => setStep(6)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
-                        <Button onClick={() => setStep(8)} disabled={selectedGoals.length === 0} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Next →</Button>
+                        <Button onClick={() => { setAudioEnabled(true); setStep(8); }} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Enable Mic & Speaker</Button>
+                        <Button onClick={() => setStep(8)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Skip for Now</Button>
                       </div>
-                      <p className="text-xs text-zinc-500 mt-2">Select up to 3 goals</p>
+                      <p className="text-xs text-zinc-500 mt-2">Optional AI coaching setup</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -407,24 +404,32 @@ export default function GolfGooseNowBoardingFlow() {
                   <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
-                      <span className="text-green-400 text-lg">🎙️</span>
-                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Cockpit Check</p>
+                      <span className="text-green-400 text-lg">🏠</span>
+                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Home Practice</p>
                     </div>
-                    <p className="text-xs text-zinc-500">Step 8/11</p>
+                    <p className="text-xs text-zinc-500">Step 8/14</p>
                   </div>
                   <CardContent className="space-y-4 text-center p-6">
-                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Meet Goose</motion.h2>
-                    <p className="text-zinc-400 text-sm pt-2">Enable mic and speaker to talk with Goose and preview the AI chat experience.</p>
-                    <div className="bg-zinc-800 p-4 rounded-xl border border-zinc-700 text-left text-sm">
-                      <p className="text-green-400 font-semibold mb-1">Sample Chat</p>
-                      <p className="text-zinc-300 italic">Goose: "I noticed your tempo tends to quicken under pressure. Want to try a rhythm drill next?"</p>
+                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Your Home Practice Setup</motion.h2>
+                    <p className="text-zinc-400 text-sm pt-2">What practice equipment do you have at home? We'll tailor drills to your setup.</p>
+                    
+                    <div className="grid grid-cols-2 gap-2">
+                      {HOME_OPTIONS.map((option) => (
+                        <Button 
+                          key={option} 
+                          onClick={() => setHomeSetup(prev => toggleIn(prev, option))} 
+                          className={`text-xs ${homeSetup.includes(option) ? 'bg-green-500 text-black' : 'bg-zinc-800 text-white'}`}
+                        >
+                          {option}
+                        </Button>
+                      ))}
                     </div>
+
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="flex gap-3">
-                        <Button onClick={() => { setAudioEnabled(true); setStep(9); }} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Enable Mic & Speaker</Button>
-                        <Button onClick={() => setStep(9)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Skip for Now</Button>
+                        <Button onClick={() => setStep(7)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
+                        <Button onClick={() => setStep(9)} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Continue →</Button>
                       </div>
-                      <p className="text-xs text-zinc-500 mt-2">Optional AI coaching setup</p>
                     </div>
                   </CardContent>
                 </Card>
