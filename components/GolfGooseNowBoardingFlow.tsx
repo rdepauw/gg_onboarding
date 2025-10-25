@@ -36,7 +36,7 @@ export default function GolfGooseNowBoardingFlow() {
   const HOME_OPTIONS = ['Putting Mat','Hitting Net','Large Mirror','Divot Board / Impact Bag','Backyard','Indoor Swing Space','Launch Monitor','Ball Machine'];
   const RANGE_OPTIONS = ['Driving Range','Short Game Area','Putting Green','Chipping Green','Bunker','Full Course Access'];
 
-  const totalSlides = 13;
+  const totalSlides = 14;
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -253,7 +253,7 @@ export default function GolfGooseNowBoardingFlow() {
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="flex gap-3">
                         <Button onClick={() => setStep(2)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
-                        <Button onClick={() => setStep(4)} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Continue →</Button>
+                        <Button onClick={() => setStep(4)} disabled={!playFrequency || !practiceTime} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Continue →</Button>
                       </div>
                     </div>
                   </CardContent>
@@ -267,10 +267,48 @@ export default function GolfGooseNowBoardingFlow() {
                   <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
+                      <span className="text-green-400 text-lg">🏠</span>
+                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Home Practice</p>
+                    </div>
+                    <p className="text-xs text-zinc-500">Step 4/14</p>
+                  </div>
+                  <CardContent className="space-y-6 text-center p-6">
+                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Your Home Practice Setup</motion.h2>
+                    <p className="text-zinc-400 text-sm pt-2">What practice equipment do you have at home? We'll tailor drills to your setup.</p>
+                    
+                    <div className="grid grid-cols-2 gap-2">
+                      {HOME_OPTIONS.map((option) => (
+                        <Button 
+                          key={option} 
+                          onClick={() => setHomeSetup(prev => toggleIn(prev, option))} 
+                          className={`text-xs ${homeSetup.includes(option) ? 'bg-green-500 text-black' : 'bg-zinc-800 text-white'}`}
+                        >
+                          {option}
+                        </Button>
+                      ))}
+                    </div>
+
+                    <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
+                      <div className="flex gap-3">
+                        <Button onClick={() => setStep(3)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
+                        <Button onClick={() => setStep(5)} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Continue →</Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {step === 5 && (
+              <motion.div key="slide5" {...fadeIn}>
+                <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
+                    <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">🎯</span>
                       <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Swing Faults</p>
                     </div>
-                    <p className="text-xs text-zinc-500">Step 4/13</p>
+                    <p className="text-xs text-zinc-500">Step 5/14</p>
                   </div>
                   <CardContent className="space-y-6 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>What Resonates With You?</motion.h2>
@@ -284,8 +322,8 @@ export default function GolfGooseNowBoardingFlow() {
 
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="flex gap-3">
-                        <Button onClick={() => setStep(3)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
-                        <Button onClick={() => setStep(5)} disabled={selectedMisses.length === 0} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Continue →</Button>
+                        <Button onClick={() => setStep(4)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
+                        <Button onClick={() => setStep(6)} disabled={selectedMisses.length === 0} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Continue →</Button>
                       </div>
                       <p className="text-xs text-zinc-500 mt-2">Select up to 3 misses</p>
                     </div>
