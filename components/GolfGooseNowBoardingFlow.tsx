@@ -36,7 +36,7 @@ export default function GolfGooseNowBoardingFlow() {
   const HOME_OPTIONS = ['Putting Mat','Hitting Net','Large Mirror','Divot Board / Impact Bag','Backyard','Indoor Swing Space','Launch Monitor','Ball Machine'];
   const RANGE_OPTIONS = ['Driving Range','Short Game Area','Putting Green','Chipping Green','Bunker','Full Course Access'];
 
-  const totalSlides = 14;
+  const totalSlides = 12;
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -377,7 +377,7 @@ export default function GolfGooseNowBoardingFlow() {
                       <span className="text-green-400 text-lg">🎙️</span>
                       <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Cockpit Check</p>
                     </div>
-                    <p className="text-xs text-zinc-500">Step 7/14</p>
+                    <p className="text-xs text-zinc-500">Step 7/12</p>
                   </div>
                   <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Meet Goose</motion.h2>
@@ -407,7 +407,7 @@ export default function GolfGooseNowBoardingFlow() {
                       <span className="text-green-400 text-lg">🏠</span>
                       <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Home Practice</p>
                     </div>
-                    <p className="text-xs text-zinc-500">Step 8/14</p>
+                    <p className="text-xs text-zinc-500">Step 8/12</p>
                   </div>
                   <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Your Home Practice Setup</motion.h2>
