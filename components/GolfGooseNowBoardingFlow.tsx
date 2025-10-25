@@ -172,7 +172,7 @@ export default function GolfGooseNowBoardingFlow() {
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="flex gap-3">
                         <Button onClick={() => setStep(1)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
-                        <Button onClick={() => setStep(3)} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Get My Drills →</Button>
+                        <Button onClick={() => setStep(3)} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Continue →</Button>
                       </div>
                       <p className="text-xs text-zinc-500 mt-2">See personalized coaching</p>
                     </div>
@@ -187,74 +187,27 @@ export default function GolfGooseNowBoardingFlow() {
                   <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
-                      <span className="text-green-400 text-lg">🏌️</span>
-                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Practice Context</p>
+                      <span className="text-green-400 text-lg">🎯</span>
+                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Swing Faults</p>
                     </div>
-                    <p className="text-xs text-zinc-500">Step 3/13</p>
+                    <p className="text-xs text-zinc-500">Step 3/14</p>
                   </div>
                   <CardContent className="space-y-6 text-center p-6">
-                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Your Golf Profile</motion.h2>
-                    <p className="text-zinc-400 text-sm pt-2">Help us personalize your practice plans and drills</p>
+                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>What Resonates With You?</motion.h2>
+                    <p className="text-zinc-400 text-sm pt-2">Pick the swing faults you fight most. We'll create personalized drills just for you.</p>
                     
-                    {/* Play Frequency */}
-                    <div className="text-left space-y-2">
-                      <label className="text-sm font-semibold">How often do you play?</label>
-                      <div className="grid grid-cols-2 gap-2">
-                        {['Daily','3-4x/week','1-2x/week','A few times/month','Rarely'].map((freq) => (
-                          <Button 
-                            key={freq} 
-                            onClick={() => setPlayFrequency(freq)} 
-                            className={`text-xs ${playFrequency === freq ? 'bg-green-500 text-black' : 'bg-zinc-800 text-white'}`}
-                          >
-                            {freq}
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Practice Time */}
-                    <div className="text-left space-y-2">
-                      <label className="text-sm font-semibold">Time available for practice?</label>
-                      <div className="grid grid-cols-2 gap-2">
-                        {['30+ min/day','20-30 min/day','10-20 min/day','< 10 min/day'].map((time) => (
-                          <Button 
-                            key={time} 
-                            onClick={() => setPracticeTime(time)} 
-                            className={`text-xs ${practiceTime === time ? 'bg-green-500 text-black' : 'bg-zinc-800 text-white'}`}
-                          >
-                            {time}
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Handicap */}
-                    <div className="grid grid-cols-2 gap-3 text-left">
-                      <div className="space-y-2">
-                        <label className="text-sm font-semibold">Current Handicap</label>
-                        <Input 
-                          value={currentHandicap} 
-                          onChange={(e) => setCurrentHandicap(e.target.value)} 
-                          placeholder="e.g. 12" 
-                          className="bg-zinc-800 border-zinc-700 rounded-xl"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-semibold">Goal Handicap</label>
-                        <Input 
-                          value={goalHandicap} 
-                          onChange={(e) => setGoalHandicap(e.target.value)} 
-                          placeholder="e.g. 8" 
-                          className="bg-zinc-800 border-zinc-700 rounded-xl"
-                        />
-                      </div>
+                    <div className="grid grid-cols-2 gap-3 mt-6">
+                      {MISSES.map((miss) => (
+                        <Button key={miss} onClick={() => setSelectedMisses(prev => toggleIn(prev, miss, 3))} className={`rounded-xl text-sm border transition-all duration-200 ${selectedMisses.includes(miss) ? 'bg-green-500 text-black border-green-500 shadow-lg' : 'bg-zinc-800 text-white border-zinc-700 hover:bg-green-600 hover:border-green-500'}`}>{miss}</Button>
+                      ))}
                     </div>
 
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="flex gap-3">
                         <Button onClick={() => setStep(2)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
-                        <Button onClick={() => setStep(4)} disabled={!playFrequency || !practiceTime} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Continue →</Button>
+                        <Button onClick={() => setStep(4)} disabled={selectedMisses.length === 0} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Continue →</Button>
                       </div>
+                      <p className="text-xs text-zinc-500 mt-2">Select up to 3 misses</p>
                     </div>
                   </CardContent>
                 </Card>
