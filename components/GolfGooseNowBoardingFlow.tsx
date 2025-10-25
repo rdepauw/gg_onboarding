@@ -12,7 +12,7 @@ export default function GolfGooseNowBoardingFlow() {
   const [takeoff, setTakeoff] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [selectedLevel, setSelectedLevel] = useState(null);
+  const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
   const [handicap, setHandicap] = useState("");
   const [ghin, setGhin] = useState("");
   const GOALS = ['Driving Accuracy','Distance','Consistency','Short Game','Putting','Mental Game'];
