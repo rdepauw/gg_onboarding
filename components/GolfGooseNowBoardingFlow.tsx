@@ -17,7 +17,7 @@ export default function GolfGooseNowBoardingFlow() {
   const [ghin, setGhin] = useState("");
   const GOALS = ['Driving Accuracy','Distance','Consistency','Short Game','Putting','Mental Game'];
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
-  const MISSES = ['Slice City','Hook the Ball Off the Planet','Fat Shots','Thin Shots','Chipping Y*ps','Three-Putt King','The Shanks','Tempo Troubles'];
+  const MISSES = ['Slice','Hook','Fat Shots','Thin Shots','Chipping Yips','Three-Putts','Shanks','Tempo Issues'];
   const [selectedMisses, setSelectedMisses] = useState<string[]>([]);
   const [audioEnabled, setAudioEnabled] = useState(false);
   const CLUBS = ['Driver','3 Wood','Hybrid','Irons','Wedges','Putter'];
@@ -37,6 +37,7 @@ export default function GolfGooseNowBoardingFlow() {
   const RANGE_OPTIONS = ['Driving Range','Short Game Area','Putting Green','Chipping Green','Bunker','Full Course Access'];
 
   const totalSlides = 13;
+  const progressPercentage = ((step - 1) / (totalSlides - 1)) * 100;
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -66,15 +67,16 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 1 && (
               <motion.div key="slide1" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
-                      <img 
-                        src="/images/golf-goose-logo.png" 
-                        alt="Golf Goose AI Logo" 
-                        className="w-16 h-16 object-contain"
-                      />
-                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Golf Goose Airways</p>
+                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Golf Goose AI</p>
                     </div>
                     <p className="text-xs text-zinc-500">Flight GG-001</p>
                   </div>
@@ -99,7 +101,7 @@ export default function GolfGooseNowBoardingFlow() {
                         <p className="text-green-400 font-semibold">Lower Scores</p>
                       </div>
                     </div>
-                    <p className="text-zinc-400 text-sm pt-4">Welcome aboard Golf Goose Airways! You're joining an elite crew of golfers ready to train smarter, track feels, and take flight with AI-powered insights.</p>
+                    <p className="text-zinc-400 text-sm pt-4">Welcome aboard Golf Goose AI! You're joining an elite crew of golfers ready to train smarter, track feels, and take flight with AI-powered insights.</p>
                     <ul className="text-zinc-300 text-sm list-disc text-left pl-6 space-y-1">
                       <li>Personalized feels and drills</li>
                       <li>Real-time coaching from Goose</li>
@@ -117,7 +119,13 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 2 && (
               <motion.div key="slide2" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">🎯</span>
@@ -184,7 +192,13 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 3 && (
               <motion.div key="slide3" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">🎯</span>
@@ -193,21 +207,21 @@ export default function GolfGooseNowBoardingFlow() {
                     <p className="text-xs text-zinc-500">Step 3/14</p>
                   </div>
                   <CardContent className="space-y-4 text-center p-6">
-                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>What Resonates With You?</motion.h2>
+                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>What's Your Miss?</motion.h2>
                     <p className="text-zinc-400 text-sm pt-2">Pick the swing faults you fight most. We'll create personalized drills just for you.</p>
                     
                     <div className="grid grid-cols-2 gap-3 mt-6">
                       {MISSES.map((miss) => (
-                        <Button key={miss} onClick={() => setSelectedMisses(prev => toggleIn(prev, miss, 3))} className={`rounded-xl text-sm border transition-all duration-200 ${selectedMisses.includes(miss) ? 'bg-green-500 text-black border-green-500 shadow-lg' : 'bg-zinc-800 text-white border-zinc-700 hover:bg-green-600 hover:border-green-500'}`}>{miss}</Button>
+                        <Button key={miss} onClick={() => setSelectedMisses(prev => toggleIn(prev, miss))} className={`rounded-xl text-sm border transition-all duration-200 ${selectedMisses.includes(miss) ? 'bg-green-500 text-black border-green-500 shadow-lg' : 'bg-zinc-800 text-white border-zinc-700 hover:bg-green-600 hover:border-green-500'}`}>{miss}</Button>
                       ))}
                     </div>
 
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="flex gap-3">
                         <Button onClick={() => setStep(2)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
-                        <Button onClick={() => setStep(4)} disabled={selectedMisses.length === 0} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Continue →</Button>
+                        <Button onClick={() => setStep(4)} disabled={selectedMisses.length === 0} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">See My Practice Plan →</Button>
                       </div>
-                      <p className="text-xs text-zinc-500 mt-2">Select up to 3 misses</p>
+                      <p className="text-xs text-zinc-500 mt-2">Select all that apply</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -217,7 +231,13 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 4 && (
               <motion.div key="slide4" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">🎯</span>
@@ -265,7 +285,13 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 5 && (
               <motion.div key="slide5" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-y-auto max-h-[90vh] shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">✈️</span>
@@ -327,7 +353,13 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 6 && (
               <motion.div key="slide6" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">🎯</span>
@@ -371,7 +403,13 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 7 && (
               <motion.div key="slide8" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">🎙️</span>
@@ -387,9 +425,9 @@ export default function GolfGooseNowBoardingFlow() {
                       <p className="text-zinc-300 italic">Goose: "I noticed your tempo tends to quicken under pressure. Want to try a rhythm drill next?"</p>
                     </div>
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
-                      <div className="flex gap-3">
-                        <Button onClick={() => { setAudioEnabled(true); setStep(8); }} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Enable Mic & Speaker</Button>
-                        <Button onClick={() => setStep(8)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Skip for Now</Button>
+                      <div className="flex flex-col gap-3">
+                        <Button onClick={() => { setAudioEnabled(true); setStep(8); }} className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Enable Mic & Speaker</Button>
+                        <Button onClick={() => setStep(8)} className="w-full bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-700 rounded-xl py-3">Skip for now</Button>
                       </div>
                       <p className="text-xs text-zinc-500 mt-2">Optional AI coaching setup</p>
                     </div>
@@ -401,7 +439,13 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 8 && (
               <motion.div key="slide8" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">🏠</span>
@@ -439,7 +483,13 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 9 && (
               <motion.div key="slide9" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">✈️</span>
@@ -457,7 +507,13 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 10 && (
               <motion.div key="slide10" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">🪙</span>
@@ -507,7 +563,7 @@ export default function GolfGooseNowBoardingFlow() {
                       {!loading ? (
                         <div className="flex flex-col gap-3">
                            <Button onClick={() => { setLoading(true); setTimeout(() => { setLoading(false); setStep(11); }, 1500); }} className="bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Start Premium Membership →</Button>
-                           <Button onClick={() => setStep(11)} className="bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Skip for Now</Button>
+                           <Button onClick={() => setStep(11)} className="bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-700 rounded-xl py-3">Skip for now</Button>
                         </div>
                       ) : (
                         <div className="flex flex-col items-center gap-3 py-4">
@@ -525,7 +581,13 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 11 && (
               <motion.div key="slide11" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">✅</span>
@@ -732,7 +794,13 @@ export default function GolfGooseNowBoardingFlow() {
             {step === 13 && (
               <motion.div key="slide13" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
                       <span className="text-green-400 text-lg">🏌️‍♂️</span>
@@ -755,9 +823,9 @@ export default function GolfGooseNowBoardingFlow() {
                       ))}
                     </div>
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
-                      <div className="flex gap-3">
-                        <Button onClick={() => setStep(11)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Skip for Now</Button>
-                        <Button onClick={() => setShowDashboard(true)} disabled={selectedClubs.length === 0} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Save Clubs →</Button>
+                      <div className="flex flex-col gap-3">
+                        <Button onClick={() => setShowDashboard(true)} disabled={selectedClubs.length === 0} className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Save Clubs →</Button>
+                        <Button onClick={() => setStep(11)} className="w-full bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-700 rounded-xl py-3">Skip for now</Button>
                       </div>
                       <p className="text-xs text-zinc-500 mt-2">Select your practice clubs</p>
                     </div>
