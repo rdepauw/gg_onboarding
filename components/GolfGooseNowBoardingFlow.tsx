@@ -262,54 +262,6 @@ export default function GolfGooseNowBoardingFlow() {
               </motion.div>
             )}
 
-            {step === 4 && (
-              <motion.div key="slide4" {...fadeIn}>
-                <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
-                  <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
-                    <div className="flex items-center gap-2">
-                      <span className="text-green-400 text-lg">🎯</span>
-                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Personalized Plan</p>
-                    </div>
-                    <p className="text-xs text-zinc-500">Step 4/11</p>
-                  </div>
-                  <CardContent className="space-y-4 text-center p-6">
-                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Your Personalized Practice Plan</motion.h2>
-                    <p className="text-zinc-400 text-sm pt-2">Drills, feels, and games designed for your swing faults</p>
-
-                    {/* Sample Drill */}
-                    <div className="bg-gradient-to-br from-green-600/20 to-zinc-800 rounded-xl p-4 border border-green-600/30 text-left">
-                      <p className="text-green-400 font-semibold mb-2">🎯 Your First Drill</p>
-                      <p className="text-sm text-white mb-1">Gate Drill</p>
-                      <p className="text-xs text-zinc-300">Place two tees creating a gate. Hit 20 balls through focusing on swing path.</p>
-                    </div>
-
-                    {/* Sample Feel */}
-                    <div className="bg-gradient-to-br from-green-600/20 to-zinc-800 rounded-xl p-4 border border-green-600/30 text-left">
-                      <p className="text-green-400 font-semibold mb-2">🎭 Try This Feel</p>
-                      <p className="text-sm text-white mb-1">Gate Feel</p>
-                      <p className="text-xs text-zinc-300">Feel the clubhead traveling through the gate. Imagine the clubface is your leading edge.</p>
-                    </div>
-
-                    {/* Sample Game */}
-                    <div className="bg-gradient-to-br from-green-600/20 to-zinc-800 rounded-xl p-4 border border-green-600/30 text-left">
-                      <p className="text-green-400 font-semibold mb-2">🎮 Practice Game</p>
-                      <p className="text-sm text-white mb-1">Gate Challenge</p>
-                      <p className="text-xs text-zinc-300">Hit 10 balls through the gate. Goal: 7+ successful passes. Track your progress.</p>
-                    </div>
-
-                    <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
-                      <div className="flex gap-3">
-                        <Button onClick={() => setStep(3)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
-                        <Button onClick={() => setStep(5)} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Continue →</Button>
-                      </div>
-                      <p className="text-xs text-zinc-500 mt-2">Your personalized plan is ready</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            )}
-
             {step === 5 && (
               <motion.div key="slide5" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-y-auto max-h-[90vh] shadow-xl">
