@@ -36,7 +36,7 @@ export default function GolfGooseNowBoardingFlow() {
   const HOME_OPTIONS = ['Putting Mat','Hitting Net','Large Mirror','Divot Board / Impact Bag','Backyard','Indoor Swing Space','Launch Monitor','Ball Machine'];
   const RANGE_OPTIONS = ['Driving Range','Short Game Area','Putting Green','Chipping Green','Bunker','Full Course Access'];
 
-  const totalSlides = 12;
+  const totalSlides = 13;
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -428,7 +428,7 @@ export default function GolfGooseNowBoardingFlow() {
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="flex gap-3">
                         <Button onClick={() => setStep(7)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
-                        <Button onClick={() => setStep(9)} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Continue →</Button>
+                        <Button onClick={() => setStep(9)} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Log First Practice Session →</Button>
                       </div>
                     </div>
                   </CardContent>
@@ -455,6 +455,74 @@ export default function GolfGooseNowBoardingFlow() {
             )}
 
             {step === 10 && (
+              <motion.div key="slide10" {...fadeIn}>
+                <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-400 text-lg">🪙</span>
+                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Membership</p>
+                    </div>
+                    <p className="text-xs text-zinc-500">Step 10/13</p>
+                  </div>
+                  <CardContent className="space-y-4 text-center p-6">
+                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>For the Price of a Large Bucket</motion.h2>
+                    <p className="text-zinc-400 text-sm pt-2">Improve your game with unlimited AI coaching and personalized drills.</p>
+                    
+                    {/* Bucket of balls illustration */}
+                    <div className="relative w-full h-32 bg-gradient-to-br from-green-900/30 to-zinc-800 rounded-xl border border-green-600/30 flex items-center justify-center">
+                      <div className="relative">
+                        {/* Bucket */}
+                        <div className="w-16 h-12 bg-gradient-to-b from-zinc-600 to-zinc-700 rounded-b-lg border-2 border-zinc-500 relative">
+                          {/* Bucket handle */}
+                          <div className="absolute -top-1 -right-1 w-4 h-6 border-2 border-zinc-500 rounded-t-full border-b-transparent"></div>
+                        </div>
+                        {/* Golf balls */}
+                        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 flex flex-wrap gap-1 w-20">
+                          <div className="w-3 h-3 bg-white rounded-full border border-zinc-300"></div>
+                          <div className="w-3 h-3 bg-white rounded-full border border-zinc-300"></div>
+                          <div className="w-3 h-3 bg-white rounded-full border border-zinc-300"></div>
+                          <div className="w-3 h-3 bg-white rounded-full border border-zinc-300"></div>
+                          <div className="w-3 h-3 bg-white rounded-full border border-zinc-300"></div>
+                          <div className="w-3 h-3 bg-white rounded-full border border-zinc-300"></div>
+                          <div className="w-3 h-3 bg-white rounded-full border border-zinc-300"></div>
+                          <div className="w-3 h-3 bg-white rounded-full border border-zinc-300"></div>
+                        </div>
+                      </div>
+                      <div className="absolute bottom-2 text-xs text-zinc-400">
+                        Like a large bucket of range balls
+                      </div>
+                    </div>
+
+                    <div className="bg-zinc-800 border border-zinc-700 rounded-xl p-4 text-left">
+                      <p className="text-green-400 font-semibold mb-1">Just $9.99/month includes:</p>
+                      <ul className="text-xs text-zinc-300 list-disc pl-4 space-y-1">
+                        <li>Unlimited AI chat with Goose</li>
+                        <li>Personalized drills for your misses</li>
+                        <li>Advanced drill library</li>
+                        <li>Progress tracking & analytics</li>
+                      </ul>
+                    </div>
+                    <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
+                      {!loading ? (
+                        <div className="flex flex-col gap-3">
+                           <Button onClick={() => { setLoading(true); setTimeout(() => { setLoading(false); setStep(11); }, 1500); }} className="bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Start Premium Membership →</Button>
+                           <Button onClick={() => setStep(11)} className="bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Skip for Now</Button>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center gap-3 py-4">
+                          <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }} className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full" />
+                          <p className="text-sm text-zinc-400">Connecting…</p>
+                        </div>
+                      )}
+                      <p className="text-xs text-zinc-500 mt-2">Optional premium upgrade</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {step === 11 && (
               <motion.div key="slide11" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
                   <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
@@ -463,7 +531,7 @@ export default function GolfGooseNowBoardingFlow() {
                       <span className="text-green-400 text-lg">✅</span>
                       <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Final Approach</p>
                     </div>
-                    <p className="text-xs text-zinc-500">Step 10/11</p>
+                    <p className="text-xs text-zinc-500">Step 11/13</p>
                   </div>
                   <CardContent className="space-y-4 text-center p-6">
                     <motion.h1 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>You're Cleared for Takeoff</motion.h1>
@@ -670,7 +738,7 @@ export default function GolfGooseNowBoardingFlow() {
                       <span className="text-green-400 text-lg">🏌️‍♂️</span>
                       <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Check Your Bags</p>
                     </div>
-                    <p className="text-xs text-zinc-500">Step 12/12</p>
+                    <p className="text-xs text-zinc-500">Step 12/13</p>
                   </div>
                   <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Check Your Bags</motion.h2>
