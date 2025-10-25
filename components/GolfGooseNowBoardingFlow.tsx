@@ -698,10 +698,10 @@ export function CustomizingFlightPlan({ onComplete, seconds = 3 }: { onComplete:
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    let raf;
+    let raf: number;
     const start = performance.now();
     const total = seconds * 1000;
-    const tick = (t) => {
+    const tick = (t: number) => {
       const pct = Math.min(1, (t - start) / total);
       setProgress(pct * 100);
       if (pct < 1) {
