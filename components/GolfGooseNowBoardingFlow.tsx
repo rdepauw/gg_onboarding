@@ -262,45 +262,6 @@ export default function GolfGooseNowBoardingFlow() {
               </motion.div>
             )}
 
-            {step === 5 && (
-              <motion.div key="slide5" {...fadeIn}>
-                <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
-                  <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
-                    <div className="flex items-center gap-2">
-                      <span className="text-green-400 text-lg">🎯</span>
-                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Swing Faults</p>
-                    </div>
-                    <p className="text-xs text-zinc-500">Step 5/14</p>
-                  </div>
-                  <CardContent className="space-y-6 text-center p-6">
-                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>What Resonates With You?</motion.h2>
-                    <p className="text-zinc-400 text-sm pt-2">Pick the swing faults you fight most. We'll create personalized drills just for you.</p>
-                    
-                    <div className="grid grid-cols-2 gap-3 mt-6">
-                      {MISSES.map((miss) => (
-                        <Button key={miss} onClick={() => setSelectedMisses(prev => toggleIn(prev, miss, 3))} className={`rounded-xl text-sm border transition-all duration-200 ${selectedMisses.includes(miss) ? 'bg-green-500 text-black border-green-500 shadow-lg' : 'bg-zinc-800 text-white border-zinc-700 hover:bg-green-600 hover:border-green-500'}`}>{miss}</Button>
-                      ))}
-                    </div>
-
-                    <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
-                      <div className="flex gap-3">
-                        <Button onClick={() => setStep(4)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
-                        <Button onClick={() => setStep(6)} disabled={selectedMisses.length === 0} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Continue →</Button>
-                      </div>
-                      <p className="text-xs text-zinc-500 mt-2">Select up to 3 misses</p>
-                    </div>
-
-                    {/* Helper card */}
-                    <div className="bg-zinc-800 border border-zinc-700 rounded-xl p-4 text-left mt-2">
-                      <p className="text-sm font-semibold mb-1 text-green-400">💡 Why we ask</p>
-                      <p className="text-xs text-zinc-300">Your swing faults help Goose create personalized drills that fix your specific game problems.</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            )}
-
             {step === 4 && (
               <motion.div key="slide4" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
