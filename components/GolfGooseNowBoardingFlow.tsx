@@ -312,7 +312,7 @@ export default function GolfGooseNowBoardingFlow() {
 
             {step === 5 && (
               <motion.div key="slide5" {...fadeIn}>
-                <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
+                <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-y-auto max-h-[90vh] shadow-xl">
                   <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
