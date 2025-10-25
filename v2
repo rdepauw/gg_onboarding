@@ -1,0 +1,262 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+
+export default function GolfGooseNowBoardingFlow() {
+  const [step, setStep] = useState(1);
+  const [showDashboard, setShowDashboard] = useState(false);
+  const [takeoff, setTakeoff] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const [selectedLevel, setSelectedLevel] = useState(null);
+  const [handicap, setHandicap] = useState("");
+  const [ghin, setGhin] = useState("");
+  const GOALS = ['Driving Accuracy','Distance','Consistency','Short Game','Putting','Mental Game'];
+  const [selectedGoals, setSelectedGoals] = useState([]);
+  const MISSES = ['Slice','Hook','Fat Shots','Thin Shots','Push','Pull','Tempo'];
+  const [selectedMisses, setSelectedMisses] = useState([]);
+  const [audioEnabled, setAudioEnabled] = useState(false);
+  const CLUBS = ['Driver','3 Wood','Hybrid','Irons','Wedges','Putter'];
+  const [selectedClubs, setSelectedClubs] = useState([]);
+
+  const totalSlides = 8;
+
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+    transition: { duration: 0.6, ease: "easeInOut" }
+  };
+
+  const toggleIn = (arr, value, max) => {
+    const exists = arr.includes(value);
+    if (exists) return arr.filter(v => v !== value);
+    if (max && arr.length >= max) return arr;
+    return [...arr, value];
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-zinc-950 to-black text-white flex flex-col items-center justify-center p-6 space-y-8 overflow-hidden">
+      {!showDashboard ? (
+        <>
+          <div className="absolute top-2 right-2 flex gap-2 text-[11px]">
+            <Button onClick={() => setStep((s) => (s > 1 ? s - 1 : totalSlides))} className="h-6 px-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded">Prev</Button>
+            <div className="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded">Slide {step}/{totalSlides}</div>
+            <Button onClick={() => setStep((s) => (s < totalSlides ? s + 1 : 1))} className="h-6 px-2 bg-green-600 hover:bg-green-500 text-black rounded">Next</Button>
+          </div>
+
+          <AnimatePresence mode="wait">
+            {step === 1 && (
+              <motion.div key="slide1" {...fadeIn}>
+                <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
+                  <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-400 text-lg">🪶</span>
+                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Golf Goose Airways</p>
+                    </div>
+                    <p className="text-xs text-zinc-500">Flight GG-001</p>
+                  </div>
+                  <CardContent className="space-y-4 text-center p-6">
+                    <motion.h1 className="text-3xl font-bold tracking-wide" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>NOW BOARDING ⛳</motion.h1>
+                    <div className="grid grid-cols-2 text-left text-sm text-zinc-300 font-mono border-y border-zinc-800 py-3">
+                      <div>
+                        <p className="text-zinc-500 text-xs">Passenger</p>
+                        <p className="text-green-400 font-semibold">New Player</p>
+                      </div>
+                      <div>
+                        <p className="text-zinc-500 text-xs">Destination</p>
+                        <p className="text-green-400 font-semibold">Lower Scores</p>
+                      </div>
+                    </div>
+                    <p className="text-zinc-400 text-sm pt-4">Welcome aboard Golf Goose Airways! You’re joining an elite crew of golfers ready to train smarter, track feels, and take flight with AI-powered insights.</p>
+                    <ul className="text-zinc-300 text-sm list-disc text-left pl-6 space-y-1">
+                      <li>Personalized feels and drills</li>
+                      <li>Real-time coaching from Goose</li>
+                      <li>Smarter performance tracking</li>
+                    </ul>
+                    <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
+                      <Button onClick={() => setStep(2)} className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Board Now →</Button>
+                      <p className="text-xs text-zinc-500 mt-2">Tap to begin onboarding</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {step === 2 && (
+              <motion.div key="slide2" {...fadeIn}>
+                <Card className="bg-zinc-900 w-full max-w-md rounded-3xl shadow-lg p-8 border border-zinc-800">
+                  <CardContent className="space-y-6 text-center">
+                    <h2 className="text-2xl font-semibold">Flight Prep: Calibrate Your Game</h2>
+                    <p className="text-zinc-400 text-sm">Set your skill and handicap so Goose can personalize drills and targets.</p>
+                    <div className="space-y-3 text-left">
+                      <h3 className="text-lg font-semibold">Skill Level</h3>
+                      <div className="grid grid-cols-2 gap-3">
+                        {['Beginner','High Handicapper','Intermediate','Advanced','Low / Scratch','Plus / Elite'].map((level) => (
+                          <Button key={level} onClick={() => setSelectedLevel(level)} className={`rounded-xl text-sm border ${selectedLevel === level ? 'bg-green-500 text-black border-green-500' : 'bg-zinc-800 text-white border-zinc-700 hover:bg-green-600'}`}>{level}</Button>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="space-y-3 text-left">
+                      <h3 className="text-lg font-semibold">Handicap Index</h3>
+                      <Input value={handicap} onChange={(e) => setHandicap(e.target.value)} placeholder="e.g. 12.5" className="bg-zinc-800 border-zinc-700 rounded-xl text-center text-white" type="number" step="0.1" inputMode="decimal" />
+                      <p className="text-xs text-zinc-400">Used to calibrate baselines and goals.</p>
+                    </div>
+                    <div className="space-y-3 text-left">
+                      <h3 className="text-lg font-semibold">GHIN Number <span className="text-zinc-500 text-sm">(optional)</span></h3>
+                      <Input value={ghin} onChange={(e) => setGhin(e.target.value)} placeholder="e.g. 1234567" className="bg-zinc-800 border-zinc-700 rounded-xl text-center text-white" type="text" inputMode="numeric" pattern="[0-9]*" />
+                      <p className="text-xs text-zinc-400">Enables verification and future auto-sync of your index.</p>
+                    </div>
+                    <div className="flex gap-3 pt-2">
+                      <Button onClick={() => setStep(1)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
+                      <Button onClick={() => setStep(3)} disabled={!selectedLevel || handicap === ''} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed">Continue →</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {step === 3 && (
+              <motion.div key="slide3" {...fadeIn}>
+                <Card className="bg-zinc-900 w-full max-w-md rounded-3xl shadow-lg p-8 border border-zinc-800">
+                  <CardContent className="space-y-6 text-center">
+                    <h2 className="text-2xl font-semibold">Define Your Mission</h2>
+                    <p className="text-zinc-400 text-sm">Pick up to 3 goals for this season.</p>
+                    <div className="grid grid-cols-2 gap-3">
+                      {GOALS.map((goal) => (
+                        <Button key={goal} onClick={() => setSelectedGoals(prev => toggleIn(prev, goal, 3))} className={`rounded-xl text-sm border ${selectedGoals.includes(goal) ? 'bg-green-500 text-black border-green-500' : 'bg-zinc-800 text-white border-zinc-700 hover:bg-green-600'}`}>{goal}</Button>
+                      ))}
+                    </div>
+                    <div className="flex gap-3 pt-2">
+                      <Button onClick={() => setStep(2)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
+                      <Button onClick={() => setStep(4)} disabled={selectedGoals.length === 0} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed">Next →</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {step === 4 && (
+              <motion.div key="slide4" {...fadeIn}>
+                <Card className="bg-zinc-900 w-full max-w-md rounded-3xl shadow-lg p-8 border border-zinc-800">
+                  <CardContent className="space-y-6 text-center">
+                    <h2 className="text-2xl font-semibold">Know Your Misses</h2>
+                    <p className="text-zinc-400 text-sm">Choose the patterns you fight most. We’ll preload counter-drills.</p>
+                    <div className="grid grid-cols-2 gap-3">
+                      {MISSES.map((miss) => (
+                        <Button key={miss} onClick={() => setSelectedMisses(prev => toggleIn(prev, miss, 3))} className={`rounded-xl text-sm border ${selectedMisses.includes(miss) ? 'bg-green-500 text-black border-green-500' : 'bg-zinc-800 text-white border-zinc-700 hover:bg-green-600'}`}>{miss}</Button>
+                      ))}
+                    </div>
+                    <div className="flex gap-3 pt-2">
+                      <Button onClick={() => setStep(3)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
+                      <Button onClick={() => setStep(5)} disabled={selectedMisses.length === 0} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed">Next →</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {step === 5 && (
+              <motion.div key="slide5" {...fadeIn}>
+                <Card className="bg-zinc-900 w-full max-w-md rounded-3xl shadow-lg p-8 border border-zinc-800">
+                  <CardContent className="space-y-6 text-center">
+                    <h2 className="text-2xl font-semibold">Meet Goose</h2>
+                    <p className="text-zinc-400 text-sm">Enable mic and speaker to talk with Goose and preview the AI chat experience.</p>
+                    <div className="bg-zinc-800 p-4 rounded-xl border border-zinc-700 text-left text-sm">
+                      <p className="text-green-400 font-semibold mb-1">Sample Chat</p>
+                      <p className="text-zinc-300 italic">Goose: “I noticed your tempo tends to quicken under pressure. Want to try a rhythm drill next?”</p>
+                    </div>
+                    <div className="flex gap-3 pt-2">
+                      <Button onClick={() => { setAudioEnabled(true); setStep(6); }} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3">Enable Mic & Speaker</Button>
+                      <Button onClick={() => setStep(6)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Skip for Now</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {step === 6 && (
+              <motion.div key="slide6" {...fadeIn}>
+                <Card className="bg-zinc-900 w-full max-w-md rounded-3xl shadow-lg p-8 border border-zinc-800">
+                  <CardContent className="space-y-6 text-center">
+                    <h2 className="text-2xl font-semibold">Pre-Flight Check: Your Clubs</h2>
+                    <p className="text-zinc-400 text-sm">Pick what you practice with most.</p>
+                    <div className="grid grid-cols-3 gap-3">
+                      {CLUBS.map((club) => (
+                        <Button key={club} onClick={() => setSelectedClubs(prev => toggleIn(prev, club))} className={`rounded-xl text-sm border ${selectedClubs.includes(club) ? 'bg-green-500 text-black border-green-500' : 'bg-zinc-800 text-white border-zinc-700 hover:bg-green-600'}`}>{club}</Button>
+                      ))}
+                    </div>
+                    <div className="flex gap-3 pt-2">
+                      <Button onClick={() => setStep(5)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
+                      <Button onClick={() => setStep(7)} disabled={selectedClubs.length === 0} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed">Continue →</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {step === 7 && (
+              <motion.div key="slide7" {...fadeIn}>
+                <Card className="bg-zinc-900 w-full max-w-md rounded-3xl shadow-lg p-8 border border-zinc-800 text-center relative overflow-hidden">
+                  <CardContent className="space-y-6">
+                    <h2 className="text-2xl font-semibold">Activate Your Membership</h2>
+                    <p className="text-zinc-400 text-sm">Connect your account to unlock full AI coaching and premium drills via our secure partner.</p>
+                    <div className="bg-zinc-800 border border-zinc-700 rounded-xl p-4 text-left">
+                      <p className="text-green-400 font-semibold mb-1">Golf Goose Premium includes:</p>
+                      <ul className="text-xs text-zinc-300 list-disc pl-4 space-y-1">
+                        <li>Unlimited AI chat feedback</li>
+                        <li>Voice recap history</li>
+                        <li>Advanced drill library access</li>
+                      </ul>
+                    </div>
+                    {!loading ? (
+                      <div className="flex flex-col gap-3">
+                        <Button onClick={() => { setLoading(true); setTimeout(() => setLoading(false), 1500); }} className="bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3">Connect RevenueCat →</Button>
+                        <Button onClick={() => setStep(8)} className="bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Skip for Now</Button>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center gap-3 py-4">
+                        <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }} className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full" />
+                        <p className="text-sm text-zinc-400">Connecting…</p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {step === 8 && (
+              <motion.div key="slide8" {...fadeIn}>
+                <Card className="bg-zinc-900 w-full max-w-md rounded-3xl shadow-lg p-8 border border-zinc-800 text-center relative overflow-hidden">
+                  <div className="absolute top-4 left-0 right-0 flex justify-center">
+                    <div className="bg-green-500 text-black text-xs font-bold uppercase tracking-widest py-1 px-4 rounded-full shadow">Boarding Complete</div>
+                  </div>
+                  <CardContent className="space-y-6 pt-10">
+                    <h1 className="text-2xl font-semibold">You’re Cleared for Takeoff</h1>
+                    <p className="text-zinc-400 text-sm">You’re all set! Goose is ready to help you practice smarter, play better, and have more fun on the course.</p>
+                    <div className="relative">
+                      <Button className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3" onClick={() => { setTakeoff(true); setTimeout(() => setShowDashboard(true), 1200); }}>
+                        Ready for Takeoff →
+                      </Button>
+                      {takeoff && (
+                        <motion.div initial={{ y: 0, opacity: 1 }} animate={{ y: -400, opacity: 0 }} transition={{ duration: 1, ease: "easeInOut" }} className="absolute left-1/2 top-1/2 -translate-x-1/2 text-4xl">✈️</motion.div>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
+      ) : (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="text-center space-y-4">
+          <h1 className="text-3xl font-semibold">Welcome to Goose HQ 🏌️‍♂️</h1>
+          <p className="text-zinc-400">Dashboard loading… your flight plan is active.</p>
+        </motion.div>
+      )}
+    </div>
+  );
+}
