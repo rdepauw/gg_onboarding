@@ -694,7 +694,7 @@ export default function GolfGooseNowBoardingFlow() {
   );
 }
 
-export function CustomizingFlightPlan({ onComplete, seconds = 3 }) {
+export function CustomizingFlightPlan({ onComplete, seconds = 3 }: { onComplete: () => void, seconds?: number }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
