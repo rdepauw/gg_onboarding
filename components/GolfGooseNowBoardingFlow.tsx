@@ -539,7 +539,7 @@ export default function GolfGooseNowBoardingFlow() {
                     
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="relative">
-                        <Button className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md" onClick={() => { setTakeoff(true); setTimeout(() => setStep(11), 1200); }}>
+                        <Button className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md" onClick={() => { setTakeoff(true); setTimeout(() => setStep(12), 1200); }}>
                           Ready for Takeoff →
                         </Button>
                         {takeoff && (
@@ -553,8 +553,8 @@ export default function GolfGooseNowBoardingFlow() {
               </motion.div>
             )}
 
-            {step === 11 && (
-              <motion.div key="slide11" {...fadeIn}>
+            {step === 12 && (
+              <motion.div key="slide12" {...fadeIn}>
                 <div className="min-h-screen bg-black text-white p-6 pb-24 pt-20">
                   <div className="max-w-md mx-auto space-y-6">
                     {/* Header */}
@@ -599,7 +599,7 @@ export default function GolfGooseNowBoardingFlow() {
                         </div>
 
                         <div className="pt-2 border-t border-zinc-800">
-                          <Button onClick={() => setStep(12)} className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-2 text-sm">
+                          <Button onClick={() => setStep(13)} className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-2 text-sm">
                             Complete Profile →
                           </Button>
                           <button onClick={() => setShowDashboard(true)} className="w-full text-xs text-zinc-500 mt-2 hover:text-zinc-400">
@@ -729,8 +729,8 @@ export default function GolfGooseNowBoardingFlow() {
               </motion.div>
             )}
 
-            {step === 12 && (
-              <motion.div key="slide12" {...fadeIn}>
+            {step === 13 && (
+              <motion.div key="slide13" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
                   <div className="absolute top-0 left-0 w-full h-1 bg-green-500" />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
@@ -738,7 +738,7 @@ export default function GolfGooseNowBoardingFlow() {
                       <span className="text-green-400 text-lg">🏌️‍♂️</span>
                       <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Check Your Bags</p>
                     </div>
-                    <p className="text-xs text-zinc-500">Step 12/13</p>
+                    <p className="text-xs text-zinc-500">Step 13/13</p>
                   </div>
                   <CardContent className="space-y-4 text-center p-6">
                     <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Check Your Bags</motion.h2>
