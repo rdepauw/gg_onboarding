@@ -25,19 +25,33 @@ export default function GolfGooseNowBoardingFlow() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
+  // Goals state
+  const [breakGoal, setBreakGoal] = useState<string | null>(null);
+  const [practiceFrequencyValue, setPracticeFrequencyValue] = useState(2);
+  const [practiceFrequency, setPracticeFrequency] = useState<string>("Weekly"); // Initialize to match slider default
+  const [showExpandedDetails, setShowExpandedDetails] = useState(false);
+  const [birdieGoal, setBirdieGoal] = useState(25);
+  const [currentHandicap, setCurrentHandicap] = useState("");
+  const [goalHandicap, setGoalHandicap] = useState("");
+  
   // Practice context
   const [playFrequency, setPlayFrequency] = useState("");
   const [practiceTime, setPracticeTime] = useState("");
-  const [currentHandicap, setCurrentHandicap] = useState("");
-  const [goalHandicap, setGoalHandicap] = useState("");
   const [homeSetup, setHomeSetup] = useState<string[]>([]);
   const [rangeSetup, setRangeSetup] = useState<string[]>([]);
   
   const HOME_OPTIONS = ['Putting Mat','Hitting Net','Large Mirror','Divot Board / Impact Bag','Backyard','Indoor Swing Space','Launch Monitor','Ball Machine'];
   const RANGE_OPTIONS = ['Driving Range','Short Game Area','Putting Green','Chipping Green','Bunker','Full Course Access'];
 
-  const totalSlides = 10;
+  const totalSlides = 12;
   const progressPercentage = (step / totalSlides) * 100;
+
+  // Redirect step 5 to step 6 (step 5 doesn't exist)
+  useEffect(() => {
+    if (step === 5) {
+      setStep(6);
+    }
+  }, [step]);
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -58,9 +72,17 @@ export default function GolfGooseNowBoardingFlow() {
       {!showDashboard ? (
         <>
           <div className="absolute top-2 right-2 flex gap-2 text-[11px]">
-            <Button onClick={() => setStep((s) => (s > 1 ? s - 1 : totalSlides))} className="h-6 px-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded">Prev</Button>
-            <div className="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded">Slide {step}/{totalSlides}</div>
-            <Button onClick={() => setStep((s) => (s < totalSlides ? s + 1 : 1))} className="h-6 px-2 bg-green-600 hover:bg-green-500 text-black rounded">Next</Button>
+            <Button onClick={() => {
+              let prevStep = step > 1 ? step - 1 : totalSlides;
+              if (prevStep === 5) prevStep = 4; // Skip step 5
+              setStep(prevStep);
+            }} className="h-6 px-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded">Prev</Button>
+            <div className="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded">Slide {step <= 4 ? step : step - 1}/{totalSlides - 1}</div>
+            <Button onClick={() => {
+              let nextStep = step < totalSlides ? step + 1 : 1;
+              if (nextStep === 5) nextStep = 6; // Skip step 5
+              setStep(nextStep);
+            }} className="h-6 px-2 bg-green-600 hover:bg-green-500 text-black rounded">Next</Button>
           </div>
 
           <AnimatePresence mode="wait">
@@ -101,11 +123,12 @@ export default function GolfGooseNowBoardingFlow() {
                         <p className="text-green-400 font-semibold">Lower Scores</p>
                       </div>
                     </div>
-                    <p className="text-zinc-400 text-sm pt-4">Welcome aboard Golf Goose AI! You're joining an elite crew of golfers ready to train smarter, track feels, and take flight with AI-powered insights.</p>
-                    <ul className="text-zinc-300 text-sm list-disc text-left pl-6 space-y-1">
-                      <li>Personalized feels and drills</li>
-                      <li>Real-time coaching from Goose</li>
-                      <li>Smarter performance tracking</li>
+                    <p className="text-zinc-400 text-sm pt-4">Now boarding for the only app built to connect your practice, rounds, and AI coach into one seamless improvement system.</p>
+                    <p className="text-zinc-400 text-sm pt-2" style={{ color: '#C3FCD2' }}><span className="font-semibold">Practice Smarter. Play Better</span></p>
+                    <ul className="text-zinc-300 text-sm list-disc text-left pl-6 space-y-1 pt-2">
+                      <li><span className="font-semibold">Thoughtful Practice</span></li>
+                      <li><span className="font-semibold">Smarter Round Recaps</span></li>
+                      <li><span className="font-semibold">Personal AI Coach</span></li>
                     </ul>
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <Button onClick={() => setStep(2)} className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Board Now →</Button>
@@ -135,8 +158,10 @@ export default function GolfGooseNowBoardingFlow() {
                   <CardContent className="space-y-4 text-center p-6">
                     {/* Main Hook */}
                     <div className="space-y-4">
-                      <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>See Golf Goose in Action</motion.h2>
-                      <p className="text-zinc-400 text-sm pt-2">Watch how AI coaching transforms your practice</p>
+                      <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>
+                        Practice Smarter.<br />Play Better
+                      </motion.h2>
+                      <p className="text-zinc-400 text-sm pt-2">See how AI coaching transforms your practice</p>
                     </div>
 
                     {/* Product Demo Video */}
@@ -270,7 +295,7 @@ export default function GolfGooseNowBoardingFlow() {
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="flex gap-3">
                         <Button onClick={() => setStep(3)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
-                        <Button onClick={() => setStep(5)} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Continue →</Button>
+                        <Button onClick={() => setStep(6)} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Continue →</Button>
                       </div>
                       <p className="text-xs text-zinc-500 mt-2">Your personalized plan is ready</p>
                     </div>
@@ -279,8 +304,9 @@ export default function GolfGooseNowBoardingFlow() {
               </motion.div>
             )}
 
-            {step === 5 && (
-              <motion.div key="slide5" {...fadeIn}>
+
+            {step === 6 && (
+              <motion.div key="slide6" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-y-auto max-h-[90vh] shadow-xl">
                   <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
                   <motion.div 
@@ -291,87 +317,45 @@ export default function GolfGooseNowBoardingFlow() {
                   />
                   <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
                     <div className="flex items-center gap-2">
-                      <span className="text-green-400 text-lg">✈️</span>
-                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Account Setup</p>
+                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Your Golf Co-Pilot</p>
                     </div>
+                    <p className="text-xs text-zinc-500">Goose Ready</p>
                   </div>
                   <CardContent className="space-y-4 text-center p-6">
-                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Create Your Account</motion.h2>
-                    <p className="text-zinc-400 text-sm pt-2">Save your progress and sync across devices</p>
+                    <motion.h1 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>
+                      Talk to me, Goose!
+                    </motion.h1>
+                    <p className="text-zinc-400 text-sm pt-2">AI-powered conversations for every part of your golf journey</p>
                     
-                    {/* Social Auth */}
-                    <div className="space-y-3 mt-6">
-                      <Button className="w-full bg-white hover:bg-gray-100 text-black font-semibold rounded-xl py-3 flex items-center justify-center gap-2 shadow-md">
-                        <span>🔍</span> Continue with Google
-                      </Button>
-                      <Button className="w-full bg-black hover:bg-gray-900 text-white font-semibold rounded-xl py-3 flex items-center justify-center gap-2 shadow-md">
-                        <span>🍎</span> Continue with Apple
-                      </Button>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <div className="flex-1 h-px bg-zinc-700"></div>
-                      <span className="text-xs text-zinc-500">or</span>
-                      <div className="flex-1 h-px bg-zinc-700"></div>
-                    </div>
-
-                    {/* Email/Password */}
-                    <div className="space-y-3 text-left">
-                      <Input 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        placeholder="Email address" 
-                        className="bg-zinc-800 border-zinc-700 rounded-xl text-white" 
-                        type="email"
-                      />
-                      <Input 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        placeholder="Password" 
-                        className="bg-zinc-800 border-zinc-700 rounded-xl text-white" 
-                        type="password"
-                      />
-                      <p className="text-xs text-zinc-400">Already have an account? <span className="text-green-400 cursor-pointer">Sign in</span></p>
-                    </div>
-
-                    <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
-                      <div className="flex gap-3">
-                        <Button onClick={() => setStep(4)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
-                        <Button onClick={() => setStep(6)} disabled={!email || !password} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Create Account →</Button>
+                    <div className="grid grid-cols-1 text-left text-sm text-zinc-300 border-y border-zinc-800 py-3">
+                      <div className="flex items-start gap-3 py-2">
+                        <span className="text-2xl">🌅</span>
+                        <div>
+                          <p className="text-green-400 font-semibold">Pre-Round Pump Up</p>
+                          <p className="text-zinc-500 text-xs">Personalized speeches focusing on feels that work, recent smart decisions, and things to avoid today</p>
+                        </div>
                       </div>
-                      <p className="text-xs text-zinc-500 mt-2">Secure account creation</p>
+                      <div className="flex items-start gap-3 py-2">
+                        <span className="text-2xl">📝</span>
+                        <div>
+                          <p className="text-green-400 font-semibold">Post Round Recap</p>
+                          <p className="text-zinc-500 text-xs">Perfect for chatting on the drive home. Focus on process vs. outcome to build lasting improvements</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3 py-2">
+                        <span className="text-2xl">🎙️</span>
+                        <div>
+                          <p className="text-green-400 font-semibold">Relive Your Favorite Rounds</p>
+                          <p className="text-zinc-500 text-xs">Banter-style podcast where you relive breaking 80 while getting light jabs from your hosts</p>
+                        </div>
+                      </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            )}
 
-            {step === 6 && (
-              <motion.div key="slide6" {...fadeIn}>
-                <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
-                  <motion.div 
-                    className="absolute top-0 left-0 h-1 bg-green-500" 
-                    initial={{ width: 0 }}
-                    animate={{ width: `${progressPercentage}%` }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
-                    <div className="flex items-center gap-2">
-                      <span className="text-green-400 text-lg">🎙️</span>
-                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Cockpit Check</p>
-                    </div>
-                  </div>
-                  <CardContent className="space-y-4 text-center p-6">
-                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Meet Goose</motion.h2>
-                    <p className="text-zinc-400 text-sm pt-2">Enable mic and speaker to talk with Goose and preview the AI chat experience.</p>
-                    <div className="bg-zinc-800 p-4 rounded-xl border border-zinc-700 text-left text-sm">
-                      <p className="text-green-400 font-semibold mb-1">Sample Chat</p>
-                      <p className="text-zinc-300 italic">Goose: "I noticed your tempo tends to quicken under pressure. Want to try a rhythm drill next?"</p>
-                    </div>
+                    <p className="text-zinc-400 text-xs pt-2">Enable voice to start chatting with Goose in real-time</p>
+
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="flex flex-col gap-3">
-                        <Button onClick={() => { setAudioEnabled(true); setStep(7); }} className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Enable Mic & Speaker</Button>
+                        <Button onClick={() => { setAudioEnabled(true); setStep(8); }} className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Enable Mic & Speaker →</Button>
                         <Button onClick={() => setStep(7)} className="w-full bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-700 rounded-xl py-3">Skip for now</Button>
                       </div>
                       <p className="text-xs text-zinc-500 mt-2">Optional AI coaching setup</p>
@@ -383,6 +367,234 @@ export default function GolfGooseNowBoardingFlow() {
 
             {step === 7 && (
               <motion.div key="slide7" {...fadeIn}>
+                <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-y-auto max-h-[90vh] shadow-xl">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-400 text-lg">✈️</span>
+                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Flight Plan</p>
+                    </div>
+                  </div>
+                  <CardContent className="space-y-6 text-center p-6">
+                    <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+                      <h2 className="text-2xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Golf Goals</h2>
+                      <p className="text-zinc-400 text-sm mt-2">Set your targets so your AI coach can chart your course.</p>
+                    </motion.div>
+                    
+                    {/* Question 1: Scoring Goal */}
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      transition={{ delay: 0.2 }}
+                      className="space-y-3"
+                    >
+                      <p className="text-zinc-300 text-sm font-medium text-left">I want to consistently break...</p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          { label: "100", value: "100" },
+                          { label: "90", value: "90" },
+                          { label: "80", value: "80" },
+                          { label: "Par", value: "par" }
+                        ].map((goal) => (
+                          <motion.div
+                            key={goal.value}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <Button
+                              onClick={() => {
+                                setBreakGoal(goal.value);
+                              }}
+                              className={`w-full rounded-xl text-sm border-2 transition-all duration-200 py-4 flex flex-col items-center justify-center ${
+                                breakGoal === goal.value 
+                                  ? 'bg-green-500 text-black border-green-500 shadow-lg font-semibold' 
+                                  : 'bg-zinc-800 text-white border-zinc-700 hover:bg-green-600/20 hover:border-green-500/50'
+                              }`}
+                            >
+                              <span className="font-semibold">{goal.label}</span>
+                            </Button>
+                          </motion.div>
+                        ))}
+                      </div>
+                      {breakGoal && (
+                        <motion.p 
+                          initial={{ opacity: 0 }} 
+                          animate={{ opacity: 1 }} 
+                          className="text-green-400 text-xs text-left"
+                        >
+                          Let's make breaking {breakGoal === "par" ? "par" : breakGoal} your new normal.
+                        </motion.p>
+                      )}
+                    </motion.div>
+
+                    {/* Question 2: Practice Frequency Slider */}
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      transition={{ delay: 0.3 }}
+                      className="space-y-3"
+                    >
+                      <p className="text-zinc-300 text-sm font-medium text-left">I practice...</p>
+                      <div className="px-2">
+                        <input
+                          type="range"
+                          min="0"
+                          max="4"
+                          step="1"
+                          value={practiceFrequencyValue}
+                          onChange={(e) => {
+                            const val = Number(e.target.value);
+                            setPracticeFrequencyValue(val);
+                            const freqMap = ["Never", "Monthly", "Weekly", "2–3x / Week", "Daily"];
+                            setPracticeFrequency(freqMap[val]);
+                          }}
+                          className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-green-500"
+                        />
+                        <div className="flex justify-between text-xs text-zinc-500 mt-1">
+                          <span>Never</span>
+                          <span className="text-green-400 font-semibold">
+                            {["Never", "Monthly", "Weekly", "2–3x / Week", "Daily"][practiceFrequencyValue]}
+                          </span>
+                          <span>Daily</span>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Flight Map Visualization (shown when handicaps are entered) */}
+                    {currentHandicap && goalHandicap && parseFloat(currentHandicap) > 0 && parseFloat(goalHandicap) > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        className="bg-gradient-to-br from-green-600/20 to-zinc-800 rounded-xl p-4 border border-green-600/30"
+                      >
+                        <p className="text-green-400 text-xs font-semibold mb-3">Your Flight Path</p>
+                        <div className="relative h-20">
+                          {/* Progress line */}
+                          <div className="absolute inset-0 flex items-center px-4">
+                            <div className="flex-1 h-1 bg-zinc-700 relative">
+                              {parseFloat(currentHandicap) > parseFloat(goalHandicap) && (
+                                <div 
+                                  className="absolute left-0 top-0 h-1 bg-green-500 transition-all duration-500"
+                                  style={{ 
+                                    width: `${Math.max(0, Math.min(100, ((parseFloat(currentHandicap) - parseFloat(goalHandicap)) / parseFloat(currentHandicap)) * 100))}%` 
+                                  }}
+                                />
+                              )}
+                            </div>
+                          </div>
+                          {/* Endpoints */}
+                          <div className="absolute inset-0 flex justify-between items-center px-2">
+                            <div className="text-center">
+                              <div className="w-10 h-10 rounded-full bg-zinc-700 border-2 border-zinc-600 flex items-center justify-center text-xs font-semibold mb-1">
+                                {currentHandicap}
+                              </div>
+                              <p className="text-xs text-zinc-500">Current</p>
+                            </div>
+                            <div className="text-center">
+                              <div className="w-10 h-10 rounded-full bg-green-500 border-2 border-green-400 flex items-center justify-center text-xs font-semibold text-black mb-1">
+                                {goalHandicap}
+                              </div>
+                              <p className="text-xs text-zinc-500">Goal</p>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* Expander for Additional Details */}
+                    <div className="border-t border-zinc-800 pt-4">
+                      <Button
+                        onClick={() => setShowExpandedDetails(!showExpandedDetails)}
+                        className="w-full bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-700 rounded-xl py-2 text-xs flex items-center justify-center gap-2"
+                      >
+                        {showExpandedDetails ? "Hide" : "Add"} More Details
+                        <span>{showExpandedDetails ? "▲" : "▼"}</span>
+                      </Button>
+
+                      <AnimatePresence>
+                        {showExpandedDetails && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="overflow-hidden mt-4 space-y-4"
+                          >
+                            {/* Handicaps (moved above birdies) */}
+                            <div className="grid grid-cols-2 gap-3">
+                              <div className="space-y-2">
+                                <p className="text-zinc-400 text-xs font-semibold text-left">📊 Current Handicap</p>
+                                <Input 
+                                  value={currentHandicap} 
+                                  onChange={(e) => setCurrentHandicap(e.target.value)} 
+                                  placeholder="e.g., 12" 
+                                  className="bg-zinc-800 border-zinc-700 rounded-xl text-white text-center text-sm" 
+                                  type="number"
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <p className="text-zinc-400 text-xs font-semibold text-left">🎯 Goal Handicap</p>
+                                <Input 
+                                  value={goalHandicap} 
+                                  onChange={(e) => setGoalHandicap(e.target.value)} 
+                                  placeholder="e.g., 8" 
+                                  className="bg-zinc-800 border-zinc-700 rounded-xl text-white text-center text-sm" 
+                                  type="number"
+                                />
+                              </div>
+                            </div>
+
+                            {/* Birdie Goal */}
+                            <div className="space-y-2">
+                              <p className="text-zinc-400 text-xs font-semibold text-left">🐦 Birdie Goal for the Year</p>
+                              <div className="px-2">
+                                <input
+                                  type="range"
+                                  min="0"
+                                  max="100"
+                                  value={birdieGoal}
+                                  onChange={(e) => setBirdieGoal(Number(e.target.value))}
+                                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-green-500"
+                                />
+                                <div className="flex justify-between text-xs text-zinc-500 mt-1">
+                                  <span>0</span>
+                                  <span className="text-green-400 font-semibold">
+                                    {birdieGoal < 11 ? "😅 Warming up" : birdieGoal < 26 ? "🐤 On a roll" : birdieGoal < 51 ? "🦅 Birdie Machine" : "🔥 Legend"} — {birdieGoal}
+                                  </span>
+                                  <span>100</span>
+                                </div>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+
+                    <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
+                      <div className="flex gap-3">
+                        <Button onClick={() => setStep(6)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
+                        <Button 
+                          onClick={() => setStep(8)} 
+                          disabled={!breakGoal} 
+                          className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md"
+                        >
+                          Generate My Flight Plan →
+                        </Button>
+                      </div>
+                      <p className="text-xs text-zinc-500 mt-2">Your AI coach is preparing your personalized training plan…</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {step === 8 && (
+              <motion.div key="slide8" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
                   <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
                   <motion.div 
@@ -398,14 +610,14 @@ export default function GolfGooseNowBoardingFlow() {
                     </div>
                   </div>
                   <CardContent className="space-y-4 text-center p-6">
-                    <CustomizingFlightPlan onComplete={() => setStep(8)} seconds={3} />
+                    <CustomizingFlightPlan onComplete={() => setStep(9)} seconds={3} />
                   </CardContent>
                 </Card>
               </motion.div>
             )}
 
-            {step === 8 && (
-              <motion.div key="slide8" {...fadeIn}>
+            {step === 9 && (
+              <motion.div key="slide9" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
                   <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
                   <motion.div 
@@ -461,8 +673,8 @@ export default function GolfGooseNowBoardingFlow() {
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       {!loading ? (
                         <div className="flex flex-col gap-3">
-                           <Button onClick={() => { setLoading(true); setTimeout(() => { setLoading(false); setStep(9); }, 1500); }} className="bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Start Premium Membership →</Button>
-                           <Button onClick={() => setStep(9)} className="bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-700 rounded-xl py-3">Skip for now</Button>
+                           <Button onClick={() => { setLoading(true); setTimeout(() => { setLoading(false); setStep(10); }, 1500); }} className="bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md">Start Premium Membership →</Button>
+                           <Button onClick={() => setStep(10)} className="bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-700 rounded-xl py-3">Skip for now</Button>
                         </div>
                       ) : (
                         <div className="flex flex-col items-center gap-3 py-4">
@@ -477,7 +689,74 @@ export default function GolfGooseNowBoardingFlow() {
               </motion.div>
             )}
 
-            {step === 9 && (
+            {step === 10 && (
+              <motion.div key="slide10" {...fadeIn}>
+                <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-y-auto max-h-[90vh] shadow-xl">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
+                  <motion.div 
+                    className="absolute top-0 left-0 h-1 bg-green-500" 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progressPercentage}%` }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-700">
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-400 text-lg">✈️</span>
+                      <p className="font-semibold tracking-widest text-xs uppercase text-zinc-400">Account Setup</p>
+                    </div>
+                  </div>
+                  <CardContent className="space-y-4 text-center p-6">
+                    <motion.h2 className="text-3xl font-bold tracking-wide" style={{ color: '#C3FCD2' }}>Create Your Account</motion.h2>
+                    <p className="text-zinc-400 text-sm pt-2">Save your progress and sync across devices</p>
+                    
+                    {/* Social Auth */}
+                    <div className="space-y-3 mt-6">
+                      <Button className="w-full bg-white hover:bg-gray-100 text-black font-semibold rounded-xl py-3 flex items-center justify-center gap-2 shadow-md">
+                        <span>🔍</span> Continue with Google
+                      </Button>
+                      <Button className="w-full bg-black hover:bg-gray-900 text-white font-semibold rounded-xl py-3 flex items-center justify-center gap-2 shadow-md">
+                        <span>🍎</span> Continue with Apple
+                      </Button>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <div className="flex-1 h-px bg-zinc-700"></div>
+                      <span className="text-xs text-zinc-500">or</span>
+                      <div className="flex-1 h-px bg-zinc-700"></div>
+                    </div>
+
+                    {/* Email/Password */}
+                    <div className="space-y-3 text-left">
+                      <Input 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)} 
+                        placeholder="Email address" 
+                        className="bg-zinc-800 border-zinc-700 rounded-xl text-white" 
+                        type="email"
+                      />
+                      <Input 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        placeholder="Password" 
+                        className="bg-zinc-800 border-zinc-700 rounded-xl text-white" 
+                        type="password"
+                      />
+                      <p className="text-xs text-zinc-400">Already have an account? <span className="text-green-400 cursor-pointer">Sign in</span></p>
+                    </div>
+
+                    <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
+                      <div className="flex gap-3">
+                        <Button onClick={() => setStep(9)} className="flex-1 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl py-3">Back</Button>
+                        <Button onClick={() => setStep(11)} disabled={!email || !password} className="flex-1 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 disabled:opacity-60 disabled:cursor-not-allowed shadow-md">Create Account →</Button>
+                      </div>
+                      <p className="text-xs text-zinc-500 mt-2">Secure account creation</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+            
+            {step === 11 && (
               <motion.div key="slide11" {...fadeIn}>
                 <Card className="relative bg-gradient-to-br from-zinc-900 to-black w-full max-w-md rounded-3xl border border-zinc-700 overflow-hidden shadow-xl">
                   <div className="absolute top-0 left-0 w-full h-1 bg-zinc-700" />
@@ -499,7 +778,7 @@ export default function GolfGooseNowBoardingFlow() {
                     
                     <div className="mt-6 border-t border-dashed border-zinc-700 pt-4">
                       <div className="relative">
-                        <Button className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md" onClick={() => { setTakeoff(true); setTimeout(() => setStep(9), 1200); }}>
+                        <Button className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold rounded-xl py-3 shadow-md" onClick={() => { setTakeoff(true); setTimeout(() => setStep(12), 1200); }}>
                           Ready for Takeoff →
                         </Button>
                         {takeoff && (
@@ -513,7 +792,7 @@ export default function GolfGooseNowBoardingFlow() {
               </motion.div>
             )}
 
-            {step === 10 && (
+            {step === 12 && (
               <motion.div key="slide12" {...fadeIn}>
                 <div className="min-h-screen bg-black text-white p-6 pb-24 pt-20">
                   <div className="max-w-md mx-auto space-y-6">
