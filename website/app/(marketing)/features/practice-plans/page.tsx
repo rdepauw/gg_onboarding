@@ -30,6 +30,7 @@ export default function PracticePlansPage() {
           { icon: "🔍", title: "Multi-Select", description: "Pick all the faults that apply to you" },
           { icon: "🔄", title: "Evolving Plans", description: "As you improve, your plan adapts to new priorities" },
         ]}
+        screenshot="/images/app/review-tab.png"
       />
 
       <FeatureDetailSection

@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 import { slideInLeft, slideInRight, viewportOnce } from "@/lib/animations"
 import { GlowOrb } from "@/components/shared/GlowOrb"
 
@@ -16,6 +17,7 @@ interface FeatureDetailSectionProps {
   description: string
   details: FeatureDetail[]
   reversed?: boolean
+  screenshot?: string
 }
 
 export function FeatureDetailSection({
@@ -24,6 +26,7 @@ export function FeatureDetailSection({
   description,
   details,
   reversed = false,
+  screenshot,
 }: FeatureDetailSectionProps) {
   return (
     <section className="py-20 md:py-28">
@@ -66,23 +69,37 @@ export function FeatureDetailSection({
           className="relative flex-1 flex justify-center"
         >
           <GlowOrb className="-top-8 -right-8" variant="green" size="md" />
-          <div className="relative w-full max-w-sm rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-black p-6 shadow-2xl">
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-2 h-2 rounded-full bg-goose-green" />
-                <div className="font-mono text-[9px] text-zinc-600 tracking-wide uppercase">{eyebrow}</div>
+          {screenshot ? (
+            <div className="relative w-64 md:w-72 rounded-[2.5rem] border-2 border-zinc-700 bg-gradient-to-br from-zinc-800 to-zinc-900 p-3 shadow-2xl shadow-black/50">
+              <div className="rounded-[2rem] bg-goose-void overflow-hidden aspect-[9/19]">
+                <Image
+                  src={screenshot}
+                  alt={`${eyebrow} app screen`}
+                  width={390}
+                  height={844}
+                  className="w-full h-full object-cover"
+                />
               </div>
-              {details.map((d, i) => (
-                <div key={i} className="rounded-xl bg-zinc-800/50 border border-zinc-700/50 p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-sm">{d.icon}</span>
-                    <span className="text-xs font-semibold text-goose-mint">{d.title}</span>
-                  </div>
-                  <div className="h-2 bg-zinc-700 rounded-full w-3/4" />
-                </div>
-              ))}
             </div>
-          </div>
+          ) : (
+            <div className="relative w-full max-w-sm rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-black p-6 shadow-2xl">
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-2 h-2 rounded-full bg-goose-green" />
+                  <div className="font-mono text-[9px] text-zinc-600 tracking-wide uppercase">{eyebrow}</div>
+                </div>
+                {details.map((d, i) => (
+                  <div key={i} className="rounded-xl bg-zinc-800/50 border border-zinc-700/50 p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-sm">{d.icon}</span>
+                      <span className="text-xs font-semibold text-goose-mint">{d.title}</span>
+                    </div>
+                    <div className="h-2 bg-zinc-700 rounded-full w-3/4" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </motion.div>
       </div>
     </section>

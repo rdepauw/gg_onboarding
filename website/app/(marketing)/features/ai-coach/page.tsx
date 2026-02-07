@@ -30,6 +30,7 @@ export default function AICoachPage() {
           { icon: "🧠", title: "Mental Cues", description: "Remind you of the feels and thoughts that produce your best swings" },
           { icon: "⚡", title: "Quick & Focused", description: "2-3 minute pump ups you can listen to on the drive to the course" },
         ]}
+        screenshot="/images/app/round-recap.png"
       />
 
       <FeatureDetailSection
@@ -42,6 +43,7 @@ export default function AICoachPage() {
           { icon: "💡", title: "Actionable Takeaways", description: "Specific practice priorities for your next session" },
         ]}
         reversed
+        screenshot="/images/app/ai-conversation.png"
       />
 
       <FeatureDetailSection
@@ -53,6 +55,7 @@ export default function AICoachPage() {
           { icon: "🎧", title: "Share with Friends", description: "Send your round recaps to your golf buddies" },
           { icon: "😂", title: "Entertainment + Insight", description: "Learn from your rounds while being entertained" },
         ]}
+        screenshot="/images/app/podcast-generated.png"
       />
 
       <CrossLinkGrid currentFeature="/features/ai-coach" />

@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   ogImage: "/images/og-image.png",
   pricing: {
     monthly: 9.99,
-    annual: 99.99,
+    annual: 72.0,
   },
   social: {
     twitter: "https://twitter.com/golfgooseai",
@@ -33,6 +33,7 @@ export const NAV_LINKS = [
     ],
   },
   { label: "Pricing", href: "/pricing" },
+  { label: "Library", href: "/library" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
 ] as const
@@ -44,6 +45,7 @@ export const FOOTER_LINKS = {
     { label: "Round Analysis", href: "/features/round-analysis" },
     { label: "Progress Tracking", href: "/features/progress-tracking" },
     { label: "Library", href: "/features/library" },
+    { label: "Free Library", href: "/library" },
     { label: "Pricing", href: "/pricing" },
   ],
   company: [

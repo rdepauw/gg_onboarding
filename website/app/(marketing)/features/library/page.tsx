@@ -30,6 +30,7 @@ export default function LibraryPage() {
           { icon: "🎭", title: "Feels", description: "Mental cues and swing sensations to internalize mechanics" },
           { icon: "🎮", title: "Games", description: "Competitive practice scenarios that make improvement fun" },
         ]}
+        screenshot="/images/app/select-course.png"
       />
 
       <FeatureDetailSection

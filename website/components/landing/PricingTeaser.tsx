@@ -11,11 +11,11 @@ import { SITE_CONFIG } from "@/lib/constants"
 
 const features = [
   "Unlimited AI chat with Goose",
-  "Personalized drills for your misses",
-  "Advanced drill library",
+  "Personalized practice library",
   "Progress tracking & analytics",
+  "Find the \"feels\" that actually work",
   "Round podcast recaps",
-  "Voice-enabled coaching",
+  "OCR scorecard scanning",
 ]
 
 export function PricingTeaser() {
@@ -31,7 +31,7 @@ export function PricingTeaser() {
         className="relative z-10 max-w-2xl mx-auto text-center"
       >
         <p className="font-mono text-[11px] tracking-flight uppercase text-zinc-500 mb-4">
-          Select Your Class
+          Frequent Flyer
         </p>
         <h2 className="font-display font-bold text-3xl md:text-5xl tracking-wide text-white mb-4">
           For the Price of a
@@ -58,7 +58,7 @@ export function PricingTeaser() {
               <span className="text-zinc-500 text-sm">/month</span>
             </div>
             <p className="font-mono text-[10px] text-zinc-500 mt-2 tracking-wide">
-              OR ${SITE_CONFIG.pricing.annual}/YEAR &mdash; SAVE 17%
+              OR ${SITE_CONFIG.pricing.annual}/YEAR &mdash; SAVE 40%
             </p>
           </div>
 
@@ -75,21 +75,12 @@ export function PricingTeaser() {
 
           <Link href="/pricing">
             <Button variant="cta" size="lg" className="w-full">
-              Start Free Trial
+              Start 7-Day Free Trial
             </Button>
           </Link>
           <p className="font-mono text-[10px] text-zinc-600 mt-3">
             7-DAY FREE TRIAL &middot; CANCEL ANYTIME
           </p>
-        </div>
-
-        <div className="mt-8">
-          <Link
-            href="/pricing"
-            className="font-mono text-xs tracking-wide text-zinc-500 hover:text-goose-mint transition-colors"
-          >
-            COMPARE ALL PLANS →
-          </Link>
         </div>
       </motion.div>
     </SectionWrapper>

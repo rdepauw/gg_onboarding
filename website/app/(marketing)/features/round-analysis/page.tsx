@@ -30,6 +30,7 @@ export default function RoundAnalysisPage() {
           { icon: "✏️", title: "Easy Editing", description: "Quick corrections if needed" },
           { icon: "📊", title: "Full Stats", description: "Every hole captured and analyzed" },
         ]}
+        screenshot="/images/app/scorecard-camera.png"
       />
 
       <FeatureDetailSection
@@ -42,6 +43,7 @@ export default function RoundAnalysisPage() {
           { icon: "💡", title: "Practice Priorities", description: "Data-driven recommendations for what to work on" },
         ]}
         reversed
+        screenshot="/images/app/scorecard-manual.png"
       />
 
       <FeatureDetailSection

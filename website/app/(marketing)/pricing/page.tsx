@@ -3,60 +3,32 @@
 import { useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Check, X } from "lucide-react"
+import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { GlowOrb } from "@/components/shared/GlowOrb"
 import { TicketDivider } from "@/components/shared/TicketDivider"
-import { fadeInUp, staggerContainer, staggerItem, viewportOnce } from "@/lib/animations"
+import { fadeInUp, viewportOnce } from "@/lib/animations"
 
-const plans = [
-  {
-    name: "Economy",
-    price: { monthly: "Free", annual: "Free" },
-    badge: null,
-    description: "Get started with basic features",
-    features: [
-      { text: "Basic practice logging", included: true },
-      { text: "Round scoring", included: true },
-      { text: "Limited library access", included: true },
-      { text: "AI Coach (5 messages/day)", included: true },
-      { text: "Personalized drills", included: false },
-      { text: "Round podcast recaps", included: false },
-      { text: "Advanced analytics", included: false },
-      { text: "Voice coaching", included: false },
-    ],
-    cta: "Get Started Free",
-    featured: false,
-  },
-  {
-    name: "First Class",
-    price: { monthly: "$9.99", annual: "$99.99" },
-    badge: "RECOMMENDED",
-    description: "Everything you need to improve",
-    features: [
-      { text: "Unlimited practice logging", included: true },
-      { text: "Round scoring + OCR", included: true },
-      { text: "Full library access", included: true },
-      { text: "Unlimited AI Coach", included: true },
-      { text: "Personalized drills", included: true },
-      { text: "Round podcast recaps", included: true },
-      { text: "Advanced analytics", included: true },
-      { text: "Voice coaching", included: true },
-    ],
-    cta: "Start Free Trial",
-    featured: true,
-  },
+const features = [
+  "Unlimited AI chat with Goose",
+  "Personalized practice library",
+  "Progress tracking & analytics",
+  "Find the \"feels\" that actually work",
+  "Round podcast recaps",
+  "OCR scorecard scanning",
+  "Advanced round analysis",
+  "Voice-enabled coaching",
 ]
 
 const faqs = [
-  { q: "Is there a free trial?", a: "Yes! First Class comes with a 7-day free trial. Cancel anytime before the trial ends and you won't be charged." },
+  { q: "Is there a free trial?", a: "Yes! Every subscription starts with a 7-day free trial. Cancel anytime before the trial ends and you won't be charged." },
   { q: "Can I cancel anytime?", a: "Absolutely. Cancel your subscription at any time directly from the app. No hidden fees or cancellation penalties." },
-  { q: "What's the difference between monthly and annual?", a: "Annual billing saves you ~17% compared to monthly. That's $19.89 in savings per year." },
+  { q: "What's the difference between monthly and annual?", a: "Annual billing saves you 40% compared to monthly — that's $47.88 in savings per year." },
   { q: "Do I need an internet connection?", a: "An internet connection is needed for AI coaching and syncing. Your logged data is available offline." },
 ]
 
 export default function PricingPage() {
-  const [annual, setAnnual] = useState(false)
+  const [annual, setAnnual] = useState(true)
 
   return (
     <>
@@ -65,7 +37,7 @@ export default function PricingPage() {
 
         <div className="relative z-10 mx-auto max-w-4xl px-6 md:px-8 text-center">
           <p className="font-mono text-[11px] tracking-flight uppercase text-goose-green mb-6">
-            Select Your Class
+            Frequent Flyer
           </p>
           <h1 className="font-display font-black text-4xl sm:text-5xl md:text-7xl tracking-tight leading-[0.9] text-white mb-4">
             For the Price of a
@@ -73,7 +45,7 @@ export default function PricingPage() {
             <span style={{ color: "#C3FCD2" }}>Large Bucket</span>
           </h1>
           <p className="text-zinc-400 text-lg max-w-lg mx-auto mb-10">
-            Choose your flight class. Upgrade, downgrade, or cancel anytime.
+            Everything you need to transform your game, for less than a bucket of range balls.
           </p>
 
           {/* Annual toggle */}
@@ -87,78 +59,68 @@ export default function PricingPage() {
             </button>
             <span className={`text-sm ${annual ? "text-white" : "text-zinc-500"}`}>
               Annual
-              <span className="ml-1.5 text-goose-green text-xs font-mono">SAVE 17%</span>
+              <span className="ml-1.5 text-goose-green text-xs font-mono">SAVE 40%</span>
             </span>
           </div>
         </div>
       </section>
 
-      {/* Pricing cards */}
+      {/* Single pricing card */}
       <section className="pb-24">
         <motion.div
-          variants={staggerContainer}
+          variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="mx-auto max-w-4xl px-6 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="mx-auto max-w-lg px-6 md:px-8"
         >
-          {plans.map((plan) => (
-            <motion.div key={plan.name} variants={staggerItem}>
-              <div className={`relative h-full rounded-3xl border p-8 ${
-                plan.featured
-                  ? "border-goose-green/30 bg-gradient-to-br from-goose-green/10 to-zinc-900 shadow-xl shadow-goose-green/5"
-                  : "border-zinc-800 bg-gradient-to-br from-zinc-900 to-black"
-              }`}>
-                {plan.badge && (
-                  <div className="absolute top-0 right-0">
-                    <div className="bg-goose-green text-goose-void font-mono text-[9px] tracking-flight font-bold px-4 py-1 rounded-bl-xl rounded-tr-3xl">
-                      {plan.badge}
-                    </div>
-                  </div>
-                )}
-
-                <div className="mb-6">
-                  <p className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-2">{plan.name}</p>
-                  <div className="flex items-baseline gap-1">
-                    <span className="font-display font-black text-4xl text-white">
-                      {annual ? plan.price.annual : plan.price.monthly}
-                    </span>
-                    {plan.price.monthly !== "Free" && (
-                      <span className="text-zinc-500 text-sm">/{annual ? "year" : "month"}</span>
-                    )}
-                  </div>
-                  <p className="text-zinc-500 text-sm mt-1">{plan.description}</p>
-                </div>
-
-                <div className="border-t border-dashed border-zinc-700 pt-6 mb-6">
-                  <ul className="space-y-3">
-                    {plan.features.map((f) => (
-                      <li key={f.text} className="flex items-center gap-3">
-                        {f.included ? (
-                          <Check className="w-4 h-4 text-goose-green flex-shrink-0" />
-                        ) : (
-                          <X className="w-4 h-4 text-zinc-700 flex-shrink-0" />
-                        )}
-                        <span className={`text-sm ${f.included ? "text-zinc-300" : "text-zinc-600"}`}>
-                          {f.text}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <Link href="/download">
-                  <Button
-                    variant={plan.featured ? "cta" : "secondary"}
-                    size="lg"
-                    className="w-full"
-                  >
-                    {plan.cta}
-                  </Button>
-                </Link>
+          <div className="relative rounded-3xl border border-goose-green/30 bg-gradient-to-br from-goose-green/10 to-zinc-900 shadow-xl shadow-goose-green/5 p-8 md:p-10">
+            <div className="absolute top-0 right-0">
+              <div className="bg-goose-green text-goose-void font-mono text-[9px] tracking-flight font-bold px-4 py-1 rounded-bl-xl rounded-tr-3xl">
+                FIRST CLASS
               </div>
-            </motion.div>
-          ))}
+            </div>
+
+            <div className="mb-6 text-center">
+              <p className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-2">Frequent Flyer</p>
+              <div className="flex items-baseline justify-center gap-1">
+                <span className="font-display font-black text-5xl text-white">
+                  {annual ? "$72" : "$9.99"}
+                </span>
+                <span className="text-zinc-500 text-sm">/{annual ? "year" : "month"}</span>
+              </div>
+              {annual && (
+                <p className="text-goose-green text-sm mt-2 font-mono">
+                  Just $6/month — save $47.88/year
+                </p>
+              )}
+              {!annual && (
+                <p className="text-zinc-500 text-sm mt-2 font-mono text-[10px] tracking-wide">
+                  OR $72/YEAR &mdash; SAVE 40%
+                </p>
+              )}
+            </div>
+
+            <div className="border-t border-dashed border-zinc-700 pt-6 mb-6">
+              <ul className="space-y-3">
+                {features.map((feature) => (
+                  <li key={feature} className="flex items-center gap-3">
+                    <Check className="w-4 h-4 text-goose-green flex-shrink-0" />
+                    <span className="text-sm text-zinc-300">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <Link href="/download">
+              <Button variant="cta" size="lg" className="w-full">
+                Start 7-Day Free Trial
+              </Button>
+            </Link>
+            <p className="font-mono text-[10px] text-zinc-600 mt-3 text-center">
+              7-DAY FREE TRIAL &middot; CANCEL ANYTIME
+            </p>
+          </div>
         </motion.div>
       </section>
 

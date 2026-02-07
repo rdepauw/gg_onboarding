@@ -4,9 +4,9 @@ import { motion, useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 
 const stats = [
-  { value: 50000, suffix: "+", label: "PASSENGERS ONBOARD" },
-  { value: 1000000, suffix: "+", label: "DRILLS GENERATED", display: "1M" },
-  { value: 4.8, suffix: "★", label: "PASSENGER RATING", isDecimal: true },
+  { value: 248, suffix: "+", label: "DRILLS, FEELS & GAMES" },
+  { value: 5, suffix: "", label: "AI-POWERED FEATURES" },
+  { value: 7, suffix: " days", label: "FREE TRIAL", display: "7" },
 ]
 
 function AnimatedNumber({ value, suffix, display, isDecimal }: {
@@ -86,7 +86,6 @@ export function SocialProofBar() {
                 value={stat.value}
                 suffix={stat.suffix}
                 display={stat.display}
-                isDecimal={stat.isDecimal}
               />
               <span className="font-mono text-[10px] tracking-flight uppercase text-zinc-500">
                 {stat.label}

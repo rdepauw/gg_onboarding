@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { GlowOrb } from "@/components/shared/GlowOrb"
+import { EmailCapture } from "@/components/shared/EmailCapture"
 import { heroStagger, heroItem } from "@/lib/animations"
 
 const boardingDetails = [
@@ -30,13 +31,16 @@ export function HeroSection() {
         animate="visible"
         className="relative z-10 flex flex-col items-center text-center max-w-5xl"
       >
-        {/* Eyebrow */}
-        <motion.p
+        {/* Eyebrow — airline badge */}
+        <motion.div
           variants={heroItem}
-          className="font-mono text-[11px] tracking-flight uppercase text-zinc-500 mb-6"
+          className="flex items-center gap-3 mb-6"
         >
-          Golf Goose Airways
-        </motion.p>
+          <div className="font-mono text-[10px] tracking-flight uppercase text-zinc-600 border border-zinc-800 rounded-full px-4 py-1.5 flex items-center gap-2">
+            <span className="text-goose-green">✈</span>
+            NOW BOARDING
+          </div>
+        </motion.div>
 
         {/* Logo */}
         <motion.div variants={heroItem} className="mb-6">
@@ -50,35 +54,17 @@ export function HeroSection() {
           />
         </motion.div>
 
-        {/* Main headline */}
+        {/* Main headline — value prop first */}
         <motion.h1
           variants={heroItem}
-          className="font-display font-black text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.85] mb-8"
-          style={{ color: "#C3FCD2" }}
+          className="font-display font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[0.9] mb-6"
         >
-          NOW
+          <span className="text-white">Your AI</span>
           <br />
-          BOARDING
+          <span style={{ color: "#C3FCD2" }}>Golf Coach</span>
         </motion.h1>
 
-        {/* Boarding pass detail strip */}
-        <motion.div
-          variants={heroItem}
-          className="flex flex-wrap justify-center gap-6 md:gap-10 mb-8 py-4 px-6 border-y border-zinc-800/60"
-        >
-          {boardingDetails.map((detail) => (
-            <div key={detail.label} className="text-left">
-              <p className="font-mono text-[10px] tracking-flight uppercase text-zinc-600">
-                {detail.label}
-              </p>
-              <p className="font-mono text-sm font-bold text-goose-green tracking-wide">
-                {detail.value}
-              </p>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Tagline */}
+        {/* Subheadline */}
         <motion.p
           variants={heroItem}
           className="font-body text-lg md:text-xl text-zinc-300 mb-4 max-w-lg"
@@ -89,24 +75,50 @@ export function HeroSection() {
 
         <motion.p
           variants={heroItem}
-          className="font-display font-bold text-lg tracking-wide mb-10"
+          className="font-display font-bold text-lg tracking-wide mb-8"
           style={{ color: "#C3FCD2" }}
         >
           Practice Smarter. Play Better.
         </motion.p>
 
-        {/* CTA Cluster */}
-        <motion.div variants={heroItem} className="flex flex-col sm:flex-row gap-4">
-          <Link href="/download">
-            <Button variant="cta" size="xl">
-              Board Now
-            </Button>
-          </Link>
+        {/* Primary CTA — email capture for pre-launch */}
+        <motion.div variants={heroItem} className="w-full max-w-md mb-6">
+          <EmailCapture
+            source="hero"
+            buttonText="Get Early Access"
+            placeholder="Enter your email"
+            successMessage="You're on the list! We'll be in touch soon."
+            variant="inline"
+          />
+          <p className="font-mono text-[10px] text-zinc-600 mt-2">
+            JOIN THE WAITLIST + GET 248 FREE DRILLS
+          </p>
+        </motion.div>
+
+        {/* Secondary CTA */}
+        <motion.div variants={heroItem}>
           <Link href="/features">
-            <Button variant="outline" size="xl">
+            <Button variant="outline" size="lg">
               Explore Features
             </Button>
           </Link>
+        </motion.div>
+
+        {/* Boarding pass detail strip — subtle, below CTAs */}
+        <motion.div
+          variants={heroItem}
+          className="flex flex-wrap justify-center gap-6 md:gap-10 mt-12 py-4 px-6 border-y border-zinc-800/40"
+        >
+          {boardingDetails.map((detail) => (
+            <div key={detail.label} className="text-left">
+              <p className="font-mono text-[9px] tracking-flight uppercase text-zinc-700">
+                {detail.label}
+              </p>
+              <p className="font-mono text-xs font-bold text-zinc-500 tracking-wide">
+                {detail.value}
+              </p>
+            </div>
+          ))}
         </motion.div>
       </motion.div>
 

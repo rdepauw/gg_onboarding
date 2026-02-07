@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react"
 import { getAllPosts, getPostBySlug } from "@/lib/blog"
 import { generatePageMetadata } from "@/lib/metadata"
 import { TicketDivider } from "@/components/shared/TicketDivider"
-import { Button } from "@/components/ui/button"
+import { BlogEmailCTA } from "@/components/blog/BlogEmailCTA"
 
 export async function generateStaticParams() {
   const posts = getAllPosts()
@@ -103,19 +103,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
 
         {/* CTA */}
-        <div className="mt-16 rounded-3xl border border-goose-green/20 bg-gradient-to-br from-goose-green/10 to-zinc-900 p-8 text-center">
-          <p className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-3">
-            Try It In Golf Goose
-          </p>
-          <h3 className="font-display font-bold text-xl text-white mb-2">
-            Practice Smarter with AI Coaching
-          </h3>
-          <p className="text-sm text-zinc-400 mb-6">
-            Get personalized drills for your swing faults and track your improvement over time.
-          </p>
-          <Link href="/download">
-            <Button variant="cta">Board Now</Button>
-          </Link>
+        <div className="mt-16">
+          <BlogEmailCTA />
         </div>
 
         <TicketDivider className="my-12" />

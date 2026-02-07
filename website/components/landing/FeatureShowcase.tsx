@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { MessageCircle, Crosshair, Radio } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
 import { fadeInUp, slideInLeft, slideInRight, viewportOnce } from "@/lib/animations"
@@ -20,6 +20,7 @@ const showcases = [
     link: "/features/ai-coach",
     gradient: "from-goose-green/10",
     reversed: false,
+    screenshot: "/images/app/ai-conversation.png",
   },
   {
     eyebrow: "Practice Plans",
@@ -33,6 +34,7 @@ const showcases = [
     link: "/features/practice-plans",
     gradient: "from-goose-mint/5",
     reversed: true,
+    screenshot: "/images/app/review-tab.png",
   },
   {
     eyebrow: "Round Analysis",
@@ -46,6 +48,7 @@ const showcases = [
     link: "/features/round-analysis",
     gradient: "from-goose-green/10",
     reversed: false,
+    screenshot: "/images/app/scorecard-camera.png",
   },
 ]
 
@@ -129,32 +132,13 @@ export function FeatureShowcase() {
                 {/* Phone frame */}
                 <div className="relative w-64 md:w-72 rounded-[2.5rem] border-2 border-zinc-700 bg-gradient-to-br from-zinc-800 to-zinc-900 p-3 shadow-2xl shadow-black/50">
                   <div className="rounded-[2rem] bg-goose-void overflow-hidden aspect-[9/19]">
-                    {/* App screen mockup */}
-                    <div className="p-4 space-y-3 h-full">
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-2 h-2 rounded-full bg-goose-green" />
-                        <div className="font-mono text-[8px] text-zinc-600 tracking-wide">
-                          {item.eyebrow.toUpperCase()}
-                        </div>
-                        <div className="w-2 h-2 rounded-full bg-zinc-700" />
-                      </div>
-                      <div className="h-3 bg-zinc-800 rounded-full w-3/4" />
-                      <div className="h-3 bg-zinc-800 rounded-full w-1/2" />
-                      <div className="mt-4 space-y-2">
-                        {[1, 2, 3].map((i) => (
-                          <div
-                            key={i}
-                            className="rounded-xl bg-gradient-to-r from-goose-green/10 to-zinc-800 border border-zinc-700/50 p-3"
-                          >
-                            <div className="h-2 bg-zinc-700 rounded-full w-2/3 mb-2" />
-                            <div className="h-2 bg-zinc-800 rounded-full w-full" />
-                          </div>
-                        ))}
-                      </div>
-                      <div className="mt-auto pt-6">
-                        <div className="h-10 bg-goose-green/20 rounded-xl border border-goose-green/30" />
-                      </div>
-                    </div>
+                    <Image
+                      src={item.screenshot}
+                      alt={`${item.eyebrow} app screen`}
+                      width={390}
+                      height={844}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
               </div>

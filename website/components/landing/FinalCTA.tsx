@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { GlowOrb } from "@/components/shared/GlowOrb"
+import { EmailCapture } from "@/components/shared/EmailCapture"
 import { fadeInUp, viewportOnce } from "@/lib/animations"
 
 export function FinalCTA() {
@@ -33,31 +34,27 @@ export function FinalCTA() {
         </h2>
 
         <p className="text-zinc-400 text-lg mb-10 max-w-md mx-auto">
-          Join 50,000+ golfers who are practicing smarter and playing better with Golf Goose.
+          Get early access to Golf Goose plus our free library of 248+ drills, feels, and games.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/download">
-            <Button variant="cta" size="xl">
-              Board Now
-            </Button>
-          </Link>
-          <Link href="/features">
-            <Button variant="outline" size="xl">
-              Explore Features
-            </Button>
-          </Link>
+        <div className="max-w-md mx-auto mb-8">
+          <EmailCapture
+            source="final-cta"
+            buttonText="Get Early Access"
+            placeholder="Enter your email"
+            successMessage="You're on the list! Welcome aboard."
+            variant="inline"
+          />
+          <p className="font-mono text-[10px] text-zinc-600 mt-2">
+            LAUNCHING SOON &middot; NO SPAM
+          </p>
         </div>
 
-        {/* App store badges placeholder */}
-        <div className="flex justify-center gap-4 mt-10">
-          <div className="h-10 px-6 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center gap-2 text-xs text-zinc-400">
-            <span>🍎</span> App Store
-          </div>
-          <div className="h-10 px-6 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center gap-2 text-xs text-zinc-400">
-            <span>▶</span> Google Play
-          </div>
-        </div>
+        <Link href="/features">
+          <Button variant="outline" size="lg">
+            Explore Features
+          </Button>
+        </Link>
       </motion.div>
 
       {/* Subtle flying airplane */}

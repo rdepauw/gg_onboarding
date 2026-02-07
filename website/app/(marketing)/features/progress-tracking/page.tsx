@@ -30,6 +30,7 @@ export default function ProgressTrackingPage() {
           { icon: "📅", title: "Activity Calendar", description: "See rounds, practice, and mock swings at a glance" },
           { icon: "⚡", title: "Quick Actions", description: "Pre-round prep, log practice, or log a round in one tap" },
         ]}
+        screenshot="/images/app/podcast-generated.png"
       />
 
       <FeatureDetailSection

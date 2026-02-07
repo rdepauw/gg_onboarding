@@ -5,6 +5,9 @@ import { syne, outfit, jetbrainsMono } from "@/lib/fonts"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
 import { OrganizationJsonLd } from "@/components/seo/JsonLd"
+import { ExitIntentPopup } from "@/components/shared/ExitIntentPopup"
+import { StickyEmailBar } from "@/components/shared/StickyEmailBar"
+import { ChatWidget } from "@/components/chat/ChatWidget"
 import { SITE_CONFIG } from "@/lib/constants"
 import "./globals.css"
 
@@ -51,6 +54,9 @@ export default function RootLayout({
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <ExitIntentPopup />
+        <StickyEmailBar />
+        <ChatWidget />
         <Analytics />
         <SpeedInsights />
       </body>
