@@ -37,7 +37,7 @@ const faqCategories = [
   {
     category: "Technical",
     questions: [
-      { q: "What devices does Golf Goose work on?", a: "Golf Goose is available on iOS and Android. A web experience is coming soon." },
+      { q: "What devices does Golf Goose work on?", a: "Golf Goose is available on iOS. A web experience is coming soon." },
       { q: "Does it work offline?", a: "Your logged data is available offline. AI coaching features and syncing require an internet connection." },
       { q: "Is my data secure?", a: "Yes. We use industry-standard encryption and never share your personal data with third parties. See our Privacy Policy for full details." },
     ],

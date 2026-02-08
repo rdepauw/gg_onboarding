@@ -29,7 +29,7 @@ export function FeatureDetailSection({
   screenshot,
 }: FeatureDetailSectionProps) {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-14 md:py-20">
       <div className={`mx-auto max-w-6xl px-6 md:px-8 flex flex-col ${reversed ? "lg:flex-row-reverse" : "lg:flex-row"} gap-12 lg:gap-20 items-center`}>
         {/* Content */}
         <motion.div

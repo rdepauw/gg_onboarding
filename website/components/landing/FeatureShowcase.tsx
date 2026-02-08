@@ -55,7 +55,7 @@ const showcases = [
 export function FeatureShowcase() {
   return (
     <SectionWrapper>
-      <div className="text-center mb-20">
+      <div className="text-center mb-12">
         <p className="font-mono text-[11px] tracking-flight uppercase text-zinc-500 mb-4">
           In-Flight Entertainment
         </p>
@@ -65,7 +65,7 @@ export function FeatureShowcase() {
         </h2>
       </div>
 
-      <div className="space-y-32">
+      <div className="space-y-20">
         {showcases.map((item, index) => (
           <div
             key={item.title}

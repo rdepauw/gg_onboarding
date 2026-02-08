@@ -9,7 +9,7 @@ import { fadeInUp, viewportOnce } from "@/lib/animations"
 
 export function FinalCTA() {
   return (
-    <section className="relative py-32 md:py-40 overflow-hidden">
+    <section className="relative py-20 md:py-28 overflow-hidden">
       {/* Dramatic center glow */}
       <GlowOrb className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" variant="green" size="xl" />
       <GlowOrb className="top-1/3 left-1/4" variant="mint" size="md" />

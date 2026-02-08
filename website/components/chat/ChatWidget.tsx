@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { MessageCircle, X, Send, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { EmailCapture } from "@/components/shared/EmailCapture"
+import { ChatItemCard } from "./ChatItemCard"
+import libraryItems from "@/data/library-items.json"
 
 interface Message {
   role: "user" | "assistant"
@@ -15,6 +17,48 @@ const WELCOME_MESSAGE: Message = {
   role: "assistant",
   content:
     "Hey! I'm Goose 🪿 — your AI practice coach. Tell me about your swing faults, what went wrong last round, or what part of your game you want to improve. I'll recommend the right drills, feels, and games from our library.",
+}
+
+interface LibraryItem {
+  title: string
+  type: string
+  skills: string[]
+}
+
+/** Extract **bold text** patterns from a message and fuzzy-match against library items */
+function matchLibraryItems(content: string): LibraryItem[] {
+  const boldPattern = /\*\*([^*]+)\*\*/g
+  const boldTexts: string[] = []
+  let match
+  while ((match = boldPattern.exec(content)) !== null) {
+    boldTexts.push(match[1].toLowerCase().trim())
+  }
+  if (boldTexts.length === 0) return []
+
+  const matched: LibraryItem[] = []
+  const seen = new Set<string>()
+
+  for (const boldText of boldTexts) {
+    if (matched.length >= 3) break
+    for (const item of libraryItems) {
+      const itemTitle = item.title.toLowerCase()
+      // Case-insensitive partial match in either direction
+      if (
+        (itemTitle.includes(boldText) || boldText.includes(itemTitle)) &&
+        !seen.has(item.title)
+      ) {
+        seen.add(item.title)
+        matched.push({
+          title: item.title,
+          type: item.type,
+          skills: item.skills,
+        })
+        break // move on to next bold text
+      }
+    }
+  }
+
+  return matched
 }
 
 export function ChatWidget() {
@@ -173,34 +217,60 @@ export function ChatWidget() {
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 relative">
-              {messages.map((msg, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className={cn(
-                    "max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed",
-                    msg.role === "user"
-                      ? "ml-auto bg-goose-green/20 text-white border border-goose-green/20"
-                      : "mr-auto bg-zinc-800/80 text-zinc-300 border border-zinc-700/50"
-                  )}
-                >
-                  {msg.content.split("\n").map((line, j) => (
-                    <p key={j} className={j > 0 ? "mt-2" : ""}>
-                      {line.split(/(\*\*[^*]+\*\*)/).map((part, k) =>
-                        part.startsWith("**") && part.endsWith("**") ? (
-                          <strong key={k} className="text-white font-semibold">
-                            {part.slice(2, -2)}
-                          </strong>
-                        ) : (
-                          part
-                        )
+              {messages.map((msg, i) => {
+                // Only match library items for completed assistant messages (not currently streaming)
+                const isLastMessage = i === messages.length - 1
+                const isAssistantDone = msg.role === "assistant" && !(isLastMessage && streaming)
+                const matchedItems = isAssistantDone ? matchLibraryItems(msg.content) : []
+
+                return (
+                  <div key={i}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className={cn(
+                        "max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed",
+                        msg.role === "user"
+                          ? "ml-auto bg-goose-green/20 text-white border border-goose-green/20"
+                          : "mr-auto bg-zinc-800/80 text-zinc-300 border border-zinc-700/50"
                       )}
-                    </p>
-                  ))}
-                </motion.div>
-              ))}
+                    >
+                      {msg.content.split("\n").map((line, j) => (
+                        <p key={j} className={j > 0 ? "mt-2" : ""}>
+                          {line.split(/(\*\*[^*]+\*\*)/).map((part, k) =>
+                            part.startsWith("**") && part.endsWith("**") ? (
+                              <strong key={k} className="text-white font-semibold">
+                                {part.slice(2, -2)}
+                              </strong>
+                            ) : (
+                              part
+                            )
+                          )}
+                        </p>
+                      ))}
+                    </motion.div>
+
+                    {matchedItems.length > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.25, delay: 0.15 }}
+                        className="max-w-[85%] mr-auto mt-1.5 space-y-1.5"
+                      >
+                        {matchedItems.map((item) => (
+                          <ChatItemCard
+                            key={item.title}
+                            title={item.title}
+                            type={item.type}
+                            skill_category={item.skills[0] || "general"}
+                          />
+                        ))}
+                      </motion.div>
+                    )}
+                  </div>
+                )
+              })}
 
               {streaming && (
                 <div className="flex items-center gap-1.5 px-4 py-2">

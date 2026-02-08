@@ -13,7 +13,7 @@ interface FeatureHeroProps {
 
 export function FeatureHero({ eyebrow, title, titleAccent, description }: FeatureHeroProps) {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <section className="relative pt-32 pb-12 md:pt-40 md:pb-16 overflow-hidden">
       <GlowOrb className="top-0 right-[-10%]" variant="green" size="lg" />
 
       <motion.div

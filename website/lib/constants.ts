@@ -16,7 +16,6 @@ export const SITE_CONFIG = {
   },
   appStore: {
     ios: "#",
-    android: "#",
   },
 }
 
@@ -35,6 +34,7 @@ export const NAV_LINKS = [
   { label: "Pricing", href: "/pricing" },
   { label: "Library", href: "/library" },
   { label: "Blog", href: "/blog" },
+  { label: "The Lounge", href: "/travel" },
   { label: "About", href: "/about" },
 ] as const
 
@@ -51,11 +51,13 @@ export const FOOTER_LINKS = {
   company: [
     { label: "About", href: "/about" },
     { label: "Blog", href: "/blog" },
+    { label: "The Lounge", href: "/travel" },
     { label: "Download", href: "/download" },
   ],
   support: [
     { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
+    { label: "Waitlist", href: "/waitlist" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },

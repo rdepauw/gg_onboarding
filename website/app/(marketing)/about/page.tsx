@@ -10,10 +10,22 @@ export const metadata: Metadata = generatePageMetadata({
 })
 
 const team = [
-  { name: "Team Member 1", role: "Co-Founder & CEO", stat: "Best round: 74", initials: "TM" },
-  { name: "Team Member 2", role: "Co-Founder & CTO", stat: "Best round: 82", initials: "TM" },
-  { name: "Team Member 3", role: "Head of Product", stat: "Best round: 79", initials: "TM" },
-  { name: "Team Member 4", role: "Lead Developer", stat: "Best round: 88", initials: "TM" },
+  {
+    name: "Ryan DePauw",
+    role: "Co-Founder & CEO",
+    initials: "RD",
+    swingFault: "Early Extension",
+    homeCourse: "Cantigny Golf",
+    goToFeel: "Swinging to Right Field",
+  },
+  {
+    name: "Tim Hsu",
+    role: "Co-Founder & CTO",
+    initials: "TH",
+    swingFault: "Over the Top",
+    homeCourse: "Cog Hill",
+    goToFeel: "Throwing a Frisbee",
+  },
 ]
 
 export default function AboutPage() {
@@ -55,7 +67,7 @@ export default function AboutPage() {
 
       {/* Team */}
       <section className="py-20">
-        <div className="mx-auto max-w-4xl px-6 md:px-8">
+        <div className="mx-auto max-w-3xl px-6 md:px-8">
           <p className="font-mono text-[11px] tracking-flight uppercase text-zinc-500 mb-4 text-center">
             Flight Crew
           </p>
@@ -63,28 +75,52 @@ export default function AboutPage() {
             Meet the Team
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {team.map((member) => (
               <div
                 key={member.name}
-                className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-black p-6 text-center hover:border-goose-green/20 transition-colors"
+                className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 hover:border-goose-mint/20 transition-colors"
               >
-                {/* Avatar placeholder */}
-                <div className="w-16 h-16 rounded-full bg-zinc-800 border-2 border-zinc-700 flex items-center justify-center mx-auto mb-4">
-                  <span className="font-mono text-sm font-bold text-zinc-500">{member.initials}</span>
+                {/* Header: Avatar + Name/Role */}
+                <div className="flex items-center gap-5 mb-6">
+                  <div className="w-16 h-16 shrink-0 rounded-full bg-goose-void border border-goose-mint/30 flex items-center justify-center">
+                    <span className="font-mono text-lg font-bold text-goose-mint">{member.initials}</span>
+                  </div>
+                  <div>
+                    <h3 className="font-display font-bold text-lg text-white">{member.name}</h3>
+                    <p className="text-sm text-zinc-400 mt-0.5">{member.role}</p>
+                  </div>
                 </div>
-                <h3 className="font-display font-bold text-sm text-white">{member.name}</h3>
-                <p className="text-xs text-zinc-500 mt-1">{member.role}</p>
-                <div className="mt-3 pt-3 border-t border-dashed border-zinc-800">
-                  <p className="font-mono text-[10px] text-goose-green">{member.stat}</p>
+
+                {/* Ticket divider */}
+                <div className="border-t border-dashed border-zinc-700 mb-6" />
+
+                {/* Mono stat labels */}
+                <div className="space-y-4">
+                  <div>
+                    <p className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-1">
+                      Swing Fault
+                    </p>
+                    <p className="font-mono text-sm text-zinc-300">{member.swingFault}</p>
+                  </div>
+                  <div>
+                    <p className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-1">
+                      Home Course
+                    </p>
+                    <p className="font-mono text-sm text-zinc-300">{member.homeCourse}</p>
+                  </div>
+                  <div>
+                    <p className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-1">
+                      Go-To Feel
+                    </p>
+                    <a href="/library" className="font-mono text-sm text-goose-mint hover:underline">
+                      {member.goToFeel}
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-
-          <p className="text-center text-sm text-zinc-500 mt-8 italic">
-            Team details coming soon — stay tuned!
-          </p>
         </div>
       </section>
     </>

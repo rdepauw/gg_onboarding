@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Play, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { skillToDisplayFormat, getYouTubeId } from "@/lib/library-utils"
+import { skillToDisplayFormat, getYouTubeId, getTypeColor } from "@/lib/library-utils"
 
 interface LibraryDetailItem {
   title: string
@@ -19,12 +19,6 @@ interface LibraryDetailItem {
 interface LibraryDetailModalProps {
   item: LibraryDetailItem | null
   onClose: () => void
-}
-
-const typeBadgeColors: Record<string, string> = {
-  drill: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-  feel: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-  game: "bg-amber-500/20 text-amber-400 border-amber-500/30",
 }
 
 export function LibraryDetailModal({ item, onClose }: LibraryDetailModalProps) {
@@ -44,6 +38,7 @@ export function LibraryDetailModal({ item, onClose }: LibraryDetailModalProps) {
   }, [item, onClose])
 
   const videoId = item?.video ? getYouTubeId(item.video) : null
+  const colors = item ? getTypeColor(item.type) : null
 
   return (
     <AnimatePresence>
@@ -77,7 +72,7 @@ export function LibraryDetailModal({ item, onClose }: LibraryDetailModalProps) {
                 <span
                   className={cn(
                     "font-mono text-[10px] tracking-wide uppercase px-3 py-1 rounded-full border",
-                    typeBadgeColors[item.type] || "bg-zinc-800 text-zinc-400 border-zinc-700"
+                    colors?.badge || "bg-zinc-800 text-zinc-400 border-zinc-700"
                   )}
                 >
                   {item.type || "other"}

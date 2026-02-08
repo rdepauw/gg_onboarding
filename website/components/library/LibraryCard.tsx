@@ -1,6 +1,6 @@
-import { Play } from "lucide-react"
+import { Play, Star } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { skillToDisplayFormat } from "@/lib/library-utils"
+import { skillToDisplayFormat, getTypeColor } from "@/lib/library-utils"
 
 interface LibraryCardProps {
   title: string
@@ -9,24 +9,29 @@ interface LibraryCardProps {
   skills: string[]
   video?: string | null
   locked?: boolean
+  featured?: boolean
   onClick?: () => void
 }
 
-const typeBadgeColors: Record<string, string> = {
-  drill: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-  feel: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-  game: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-}
+export function LibraryCard({ title, description, type, skills, video, locked, featured, onClick }: LibraryCardProps) {
+  const colors = getTypeColor(type)
 
-export function LibraryCard({ title, description, type, skills, video, locked, onClick }: LibraryCardProps) {
   return (
     <div
       onClick={locked ? undefined : onClick}
       className={cn(
-        "relative rounded-2xl border p-5 transition-all duration-200 h-full flex flex-col",
+        "relative rounded-2xl border border-l-2 p-5 transition-all duration-200 h-full flex flex-col",
         locked
-          ? "border-zinc-800 bg-zinc-900/50 opacity-60"
-          : "border-zinc-800 bg-gradient-to-br from-zinc-900 to-black hover:border-zinc-700 hover:shadow-lg hover:shadow-black/20",
+          ? "border-zinc-800 border-l-zinc-700 bg-zinc-900/50 opacity-60"
+          : featured
+            ? cn(
+                "border-goose-green/20 bg-gradient-to-br from-zinc-900 to-black hover:border-goose-green/40 hover:shadow-lg hover:shadow-goose-green/5",
+                colors.border
+              )
+            : cn(
+                "border-zinc-800 bg-gradient-to-br from-zinc-900 to-black hover:border-zinc-700 hover:shadow-lg hover:shadow-black/20",
+                colors.border
+              ),
         !locked && onClick && "cursor-pointer"
       )}
     >
@@ -34,12 +39,19 @@ export function LibraryCard({ title, description, type, skills, video, locked, o
         <div className="absolute top-3 right-3 text-zinc-600 text-sm">🔒</div>
       )}
 
+      {featured && !locked && (
+        <div className="absolute top-3 right-3 flex items-center gap-1 font-mono text-[8px] tracking-wide uppercase text-goose-green/70">
+          <Star className="w-2.5 h-2.5 fill-goose-green/70" />
+          Staff Pick
+        </div>
+      )}
+
       {/* Type badge + video link */}
       <div className="flex items-center gap-2 mb-3">
         <span
           className={cn(
             "font-mono text-[9px] tracking-wide uppercase px-2 py-0.5 rounded-full border",
-            typeBadgeColors[type] || "bg-zinc-800 text-zinc-400 border-zinc-700"
+            colors.badge
           )}
         >
           {type || "other"}

@@ -55,7 +55,7 @@ export function TestimonialsCarousel() {
 
   return (
     <SectionWrapper fullBleed>
-      <div className="mx-auto max-w-6xl px-6 md:px-8 mb-12">
+      <div className="mx-auto max-w-6xl px-6 md:px-8 mb-8">
         <div className="text-center">
           <p className="font-mono text-[11px] tracking-flight uppercase text-zinc-500 mb-4">
             Passenger Reviews

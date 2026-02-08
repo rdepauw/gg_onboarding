@@ -18,6 +18,14 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_CONFIG.name}`,
   },
   description: SITE_CONFIG.description,
+  icons: {
+    icon: [
+      { url: "/images/golf-goose-logo-transparent.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/images/golf-goose-logo-transparent.png" },
+    ],
+  },
   openGraph: {
     title: SITE_CONFIG.name,
     description: SITE_CONFIG.description,

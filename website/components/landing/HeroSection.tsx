@@ -38,14 +38,14 @@ export function HeroSection() {
         >
           <div className="font-mono text-[10px] tracking-flight uppercase text-zinc-600 border border-zinc-800 rounded-full px-4 py-1.5 flex items-center gap-2">
             <span className="text-goose-green">✈</span>
-            NOW BOARDING
+            PRE-BOARDING
           </div>
         </motion.div>
 
         {/* Logo */}
         <motion.div variants={heroItem} className="mb-6">
           <Image
-            src="/images/golf-goose-logo.png"
+            src="/images/golf-goose-logo-transparent.png"
             alt="Golf Goose AI"
             width={72}
             height={72}
@@ -59,26 +59,18 @@ export function HeroSection() {
           variants={heroItem}
           className="font-display font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[0.9] mb-6"
         >
-          <span className="text-white">Your AI</span>
+          <span className="text-white">Practice Smarter,</span>
           <br />
-          <span style={{ color: "#C3FCD2" }}>Golf Coach</span>
+          <span style={{ color: "#C3FCD2" }}>Play Better</span>
         </motion.h1>
 
         {/* Subheadline */}
         <motion.p
           variants={heroItem}
-          className="font-body text-lg md:text-xl text-zinc-300 mb-4 max-w-lg"
+          className="font-body text-lg md:text-xl text-zinc-300 mb-8 max-w-lg"
         >
           The only app that connects your practice, rounds, and AI coach
-          into one seamless improvement system.
-        </motion.p>
-
-        <motion.p
-          variants={heroItem}
-          className="font-display font-bold text-lg tracking-wide mb-8"
-          style={{ color: "#C3FCD2" }}
-        >
-          Practice Smarter. Play Better.
+          — so every session builds on the last.
         </motion.p>
 
         {/* Primary CTA — email capture for pre-launch */}

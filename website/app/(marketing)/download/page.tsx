@@ -8,7 +8,7 @@ import { SoftwareAppJsonLd } from "@/components/seo/JsonLd"
 
 export const metadata: Metadata = generatePageMetadata({
   title: "Download Golf Goose",
-  description: "Download Golf Goose AI for iOS and Android. Start practicing smarter and playing better today.",
+  description: "Download Golf Goose AI for iOS. Start practicing smarter and playing better today.",
   path: "/download",
 })
 
@@ -49,12 +49,6 @@ export default function DownloadPage() {
               className="h-14 px-8 rounded-xl bg-white text-black font-bold flex items-center justify-center gap-3 hover:bg-zinc-200 transition-colors text-sm"
             >
               <span className="text-xl">🍎</span> Download on the App Store
-            </a>
-            <a
-              href="#"
-              className="h-14 px-8 rounded-xl bg-white text-black font-bold flex items-center justify-center gap-3 hover:bg-zinc-200 transition-colors text-sm"
-            >
-              <span className="text-xl">▶</span> Get it on Google Play
             </a>
           </div>
 

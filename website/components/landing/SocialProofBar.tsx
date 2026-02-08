@@ -62,7 +62,7 @@ function AnimatedNumber({ value, suffix, display, isDecimal }: {
 
 export function SocialProofBar() {
   return (
-    <section className="relative py-16 border-y border-zinc-800/40">
+    <section className="relative py-12 border-y border-zinc-800/40">
       {/* Subtle green glow underneath */}
       <div
         className="absolute inset-0 opacity-30 pointer-events-none"

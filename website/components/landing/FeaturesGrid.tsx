@@ -54,7 +54,7 @@ const features = [
 export function FeaturesGrid() {
   return (
     <SectionWrapper className="bg-goose-terminal">
-      <div className="text-center mb-16">
+      <div className="text-center mb-10">
         <p className="font-mono text-[11px] tracking-flight uppercase text-zinc-500 mb-4">
           All Destinations
         </p>

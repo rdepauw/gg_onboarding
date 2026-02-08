@@ -33,7 +33,7 @@ const zones = [
 export function HowItWorks() {
   return (
     <SectionWrapper>
-      <div className="text-center mb-16">
+      <div className="text-center mb-10">
         <p className="font-mono text-[11px] tracking-flight uppercase text-zinc-500 mb-4">
           Boarding Process
         </p>

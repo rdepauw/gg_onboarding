@@ -43,7 +43,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-zinc-800/50">
           <div className="flex items-center gap-2.5">
             <Image
-              src="/images/golf-goose-logo.png"
+              src="/images/golf-goose-logo-transparent.png"
               alt="Golf Goose"
               width={24}
               height={24}

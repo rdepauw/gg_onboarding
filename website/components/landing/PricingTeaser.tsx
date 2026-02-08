@@ -38,7 +38,7 @@ export function PricingTeaser() {
           <br />
           <span style={{ color: "#C3FCD2" }}>Large Bucket</span>
         </h2>
-        <p className="text-zinc-400 mb-12 max-w-md mx-auto">
+        <p className="text-zinc-400 mb-8 max-w-md mx-auto">
           Everything you need to transform your game, for less than a bucket of range balls.
         </p>
 

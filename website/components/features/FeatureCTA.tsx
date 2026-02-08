@@ -15,7 +15,7 @@ export function FeatureCTA({
   description = "Start practicing smarter with Golf Goose today.",
 }: FeatureCTAProps) {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-14 md:py-20">
       <motion.div
         variants={fadeInUp}
         initial="hidden"

@@ -44,7 +44,7 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group">
               <Image
-                src="/images/golf-goose-logo.png"
+                src="/images/golf-goose-logo-transparent.png"
                 alt="Golf Goose"
                 width={32}
                 height={32}

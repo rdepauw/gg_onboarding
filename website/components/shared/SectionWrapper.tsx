@@ -11,7 +11,7 @@ interface SectionWrapperProps {
 
 export function SectionWrapper({ children, className, id, fullBleed }: SectionWrapperProps) {
   return (
-    <section id={id} className={cn("relative py-24 md:py-32", className)}>
+    <section id={id} className={cn("relative py-16 md:py-20", className)}>
       {fullBleed ? (
         children
       ) : (

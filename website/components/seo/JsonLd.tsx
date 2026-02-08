@@ -39,7 +39,7 @@ export function SoftwareAppJsonLd() {
         "@type": "SoftwareApplication",
         name: "Golf Goose",
         applicationCategory: "SportsApplication",
-        operatingSystem: "iOS, Android",
+        operatingSystem: "iOS",
         offers: {
           "@type": "Offer",
           price: "9.99",

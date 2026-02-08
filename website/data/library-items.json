@@ -24,7 +24,8 @@
     ],
     "video": null,
     "source": "",
-    "claude_ready": false
+    "claude_ready": false,
+    "featured": true
   },
   {
     "title": "Carpet Putting Track Drill",
@@ -145,7 +146,8 @@
     ],
     "video": "https://www.youtube.com/watch?v=YC-iEBFqPSw",
     "source": "Fairlawn Golf",
-    "claude_ready": false
+    "claude_ready": false,
+    "featured": true
   },
   {
     "title": "Lead Arm Chipping Drill",
@@ -1103,7 +1105,8 @@
     ],
     "video": null,
     "source": "18Birdies",
-    "claude_ready": false
+    "claude_ready": false,
+    "featured": true
   },
   {
     "title": "Stomp Drill (Tommy Fleetwood)",
@@ -1117,7 +1120,8 @@
     ],
     "video": "https://www.youtube.com/watch?v=M2-yUiT-ZTI",
     "source": "Tommy Fleetwood / Golf.com",
-    "claude_ready": false
+    "claude_ready": false,
+    "featured": true
   },
   {
     "title": "Squat and Turn ",
@@ -1179,7 +1183,8 @@
     ],
     "video": "https://www.youtube.com/shorts/CV21m4AUKQY",
     "source": "Golf Digest",
-    "claude_ready": false
+    "claude_ready": false,
+    "featured": true
   },
   {
     "title": "Windmill Drill (Tommy Fleetwood)",
@@ -1237,7 +1242,8 @@
     ],
     "video": "https://www.youtube.com/watch?v=-3PEElX31Rk",
     "source": "Tiger Woods / Golf Practice Plans",
-    "claude_ready": false
+    "claude_ready": false,
+    "featured": true
   },
   {
     "title": "Hip Height Power Drill (Jon Rahm)",
@@ -1277,7 +1283,8 @@
     ],
     "video": "https://www.youtube.com/watch?v=dpFd1xocxrE",
     "source": "Phil Mickelson / Jackie Burke",
-    "claude_ready": false
+    "claude_ready": false,
+    "featured": true
   },
   {
     "title": "Feel vs. Real: Drop the Arms",
@@ -1397,7 +1404,8 @@
     ],
     "video": "https://www.youtube.com/watch?v=dpFd1xocxrE",
     "source": "Foresight Golf",
-    "claude_ready": false
+    "claude_ready": false,
+    "featured": true
   },
   {
     "title": "Belt Buckle Drill (Rory McIlroy)",
@@ -1491,7 +1499,8 @@
     "tags": [],
     "video": "https://www.youtube.com/watch?v=M_b8Z0pBq_U",
     "source": "Fairlawn Golf",
-    "claude_ready": false
+    "claude_ready": false,
+    "featured": true
   },
   {
     "title": "Made in the Shade Bunker Drill",
@@ -2461,7 +2470,8 @@
     "tags": [],
     "video": "https://www.youtube.com/watch?v=M_b8Z0pBq_U",
     "source": "MassGolf",
-    "claude_ready": false
+    "claude_ready": false,
+    "featured": true
   },
   {
     "title": "Fat Drill — Lead-Side Pressure Shift",
