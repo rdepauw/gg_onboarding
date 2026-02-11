@@ -16,7 +16,7 @@ export default function TravelPage() {
   return (
     <>
       <FeatureHero
-        eyebrow="The Lounge"
+        eyebrow="The Lounge ✈️"
         title="Golf Travel"
         titleAccent="Guide"
         description="Curated destination guides built by golfers, for golfers. Courses to play, places to eat, where to stay, and what to do when you're not on the course."

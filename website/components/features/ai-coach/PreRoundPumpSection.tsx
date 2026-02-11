@@ -2,9 +2,8 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { fadeInUp, slideInLeft, slideInRight, staggerContainer, staggerItem, viewportOnce } from "@/lib/animations"
+import { slideInRight, staggerContainer, staggerItem, viewportOnce } from "@/lib/animations"
 import { GlowOrb } from "@/components/shared/GlowOrb"
-import { AudioSamplePlayer } from "@/components/features/AudioSamplePlayer"
 
 const pumpFeatures = [
   {
@@ -59,13 +58,6 @@ export function PreRoundPumpSection() {
               </div>
             </div>
 
-            {/* Audio Player */}
-            <AudioSamplePlayer
-              title="Pre-Round Pump Up"
-              description="Personalized motivation before your round"
-              src="/audio/sample-pump-up.mp3"
-              artwork="/images/app/pre-round-pump.png"
-            />
           </motion.div>
 
           {/* Left side: Content */}

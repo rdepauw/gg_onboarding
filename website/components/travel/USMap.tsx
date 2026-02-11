@@ -11,8 +11,8 @@ interface USMapProps {
 }
 
 /**
- * Convert lat/lng to approximate percentage positions on our US map SVG.
- * The SVG viewport covers roughly:
+ * Convert lat/lng to approximate percentage positions on the map.
+ * Covers roughly:
  *   Longitude: -125 (west) to -66 (east)
  *   Latitude:  49 (north) to 24 (south)
  */
@@ -28,10 +28,38 @@ function coordsToPosition(lat: number, lng: number): { x: number; y: number } {
   return { x: Math.max(2, Math.min(98, x)), y: Math.max(2, Math.min(98, y)) }
 }
 
+/** Convert percentage positions to SVG viewBox coordinates */
+function toSvg(pct: { x: number; y: number }): { sx: number; sy: number } {
+  return { sx: (pct.x / 100) * 960, sy: (pct.y / 100) * 600 }
+}
+
+/**
+ * Generate a curved arc path between two SVG points.
+ * The control point is offset perpendicular to the midpoint.
+ */
+function arcPath(x1: number, y1: number, x2: number, y2: number): string {
+  const mx = (x1 + x2) / 2
+  const my = (y1 + y2) / 2
+  const dx = x2 - x1
+  const dy = y2 - y1
+  const dist = Math.sqrt(dx * dx + dy * dy)
+  const offset = dist * 0.2
+  // Perpendicular offset (biased upward for visual)
+  const cx = mx - (dy / dist) * offset
+  const cy = my + (dx / dist) * offset - offset * 0.3
+  return `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`
+}
+
 export function USMap({ destinations }: USMapProps) {
+  // Pre-compute SVG positions for flight path arcs
+  const svgPositions = destinations.map((dest) => {
+    const pct = coordsToPosition(dest.coordinates.lat, dest.coordinates.lng)
+    return { ...toSvg(pct), slug: dest.slug }
+  })
+
   return (
     <>
-      {/* Desktop: Interactive SVG map */}
+      {/* Desktop: Flight route network display */}
       <motion.div
         variants={fadeIn}
         initial="hidden"
@@ -39,20 +67,21 @@ export function USMap({ destinations }: USMapProps) {
         viewport={viewportOnce}
         className="hidden md:block relative mx-auto max-w-5xl"
       >
-        <div className="relative aspect-[1.7/1]">
-          {/* US Map SVG — simplified continental outline */}
+        <div className="relative aspect-[1.7/1] rounded-2xl border border-zinc-800/60 bg-gradient-to-b from-zinc-900/50 to-black/80 overflow-hidden">
+          {/* SVG — radar grid + flight paths */}
           <svg
             viewBox="0 0 960 600"
             className="w-full h-full"
             xmlns="http://www.w3.org/2000/svg"
-            aria-label="Map of continental United States showing golf destinations"
+            aria-label="Flight route network showing golf destinations across the United States"
           >
             <defs>
-              <linearGradient id="mapGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#18181b" stopOpacity="1" />
-                <stop offset="100%" stopColor="#09090b" stopOpacity="1" />
-              </linearGradient>
-              <filter id="mapGlow">
+              <radialGradient id="radarGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#08E26E" stopOpacity="0.04" />
+                <stop offset="70%" stopColor="#08E26E" stopOpacity="0.01" />
+                <stop offset="100%" stopColor="#08E26E" stopOpacity="0" />
+              </radialGradient>
+              <filter id="arcGlow">
                 <feGaussianBlur stdDeviation="2" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
@@ -61,55 +90,87 @@ export function USMap({ destinations }: USMapProps) {
               </filter>
             </defs>
 
-            {/* Continental US simplified outline */}
-            <path
-              d="
-                M 130,95 L 145,93 L 155,98 L 165,95 L 175,90 L 190,88
-                L 200,92 L 215,90 L 230,85 L 250,82 L 265,80 L 280,78
-                L 310,80 L 340,78 L 370,80 L 400,78 L 430,82 L 450,85
-                L 480,88 L 510,90 L 540,88 L 560,85 L 580,82 L 600,80
-                L 620,78 L 640,80 L 660,85 L 680,88 L 700,90 L 720,95
-                L 740,100 L 755,108 L 760,120 L 768,135 L 775,150
-                L 780,165 L 788,175 L 795,190 L 800,200 L 808,210
-                L 820,218 L 832,228 L 845,235 L 850,250 L 848,265
-                L 845,280 L 840,295 L 842,310 L 848,325 L 855,335
-                L 860,350 L 862,365 L 858,380 L 850,390 L 842,398
-                L 835,405 L 830,415 L 828,430 L 830,445 L 825,455
-                L 815,460 L 802,458 L 792,452 L 785,445 L 775,440
-                L 760,442 L 745,448 L 730,455 L 718,462 L 705,468
-                L 690,470 L 672,468 L 658,465 L 645,470 L 630,475
-                L 615,478 L 600,482 L 580,485 L 560,488 L 540,490
-                L 520,488 L 502,492 L 488,496 L 475,498 L 462,495
-                L 448,490 L 435,488 L 420,492 L 405,498 L 390,502
-                L 375,505 L 360,508 L 345,510 L 330,508 L 318,505
-                L 305,500 L 292,498 L 278,502 L 265,508 L 252,512
-                L 238,510 L 225,505 L 210,500 L 195,498 L 180,502
-                L 165,508 L 148,510 L 135,505 L 125,498 L 118,490
-                L 112,478 L 108,465 L 105,450 L 100,435 L 95,420
-                L 92,405 L 88,390 L 85,375 L 82,360 L 80,342
-                L 78,325 L 76,305 L 75,285 L 76,265 L 78,245
-                L 80,228 L 82,210 L 85,195 L 88,178 L 92,162
-                L 95,148 L 100,135 L 108,122 L 115,112 L 122,102
-                L 130,95 Z
-              "
-              fill="url(#mapGradient)"
-              stroke="#3f3f46"
-              strokeWidth="1.5"
-              className="drop-shadow-lg"
-            />
+            {/* Radar background glow */}
+            <rect x="0" y="0" width="960" height="600" fill="url(#radarGlow)" />
 
-            {/* Subtle grid overlay for texture */}
-            <g opacity="0.04" stroke="#C3FCD2" strokeWidth="0.5">
-              {Array.from({ length: 12 }, (_, i) => (
-                <line key={`h-${i}`} x1="60" y1={80 + i * 40} x2="880" y2={80 + i * 40} />
+            {/* Dotted grid */}
+            <g opacity="0.05" stroke="#C3FCD2" strokeWidth="0.5" strokeDasharray="2 8">
+              {Array.from({ length: 8 }, (_, i) => (
+                <line key={`h-${i}`} x1="40" y1={75 + i * 65} x2="920" y2={75 + i * 65} />
               ))}
-              {Array.from({ length: 18 }, (_, i) => (
-                <line key={`v-${i}`} x1={80 + i * 48} y1="60" x2={80 + i * 48} y2="540" />
+              {Array.from({ length: 12 }, (_, i) => (
+                <line key={`v-${i}`} x1={80 + i * 72} y1="40" x2={80 + i * 72} y2="560" />
               ))}
             </g>
+
+            {/* Concentric radar rings */}
+            <g opacity="0.04" stroke="#C3FCD2" strokeWidth="0.5">
+              <circle cx="480" cy="300" r="120" fill="none" />
+              <circle cx="480" cy="300" r="240" fill="none" />
+              <circle cx="480" cy="300" r="360" fill="none" />
+            </g>
+
+            {/* Center crosshair */}
+            <g opacity="0.06" stroke="#C3FCD2" strokeWidth="0.5">
+              <line x1="470" y1="300" x2="490" y2="300" />
+              <line x1="480" y1="290" x2="480" y2="310" />
+            </g>
+
+            {/* Flight path arcs between destination pairs */}
+            <g filter="url(#arcGlow)">
+              {svgPositions.map((pos, i) => {
+                // Connect to next destination in list (wraps to create network)
+                const next = svgPositions[(i + 1) % svgPositions.length]
+                return (
+                  <path
+                    key={`arc-${pos.slug}`}
+                    d={arcPath(pos.sx, pos.sy, next.sx, next.sy)}
+                    fill="none"
+                    stroke="#08E26E"
+                    strokeWidth="0.8"
+                    strokeDasharray="6 6"
+                    opacity="0.15"
+                  />
+                )
+              })}
+              {/* Add a few cross-connections for density */}
+              {svgPositions.length >= 4 && (
+                <>
+                  <path
+                    d={arcPath(svgPositions[0].sx, svgPositions[0].sy, svgPositions[3].sx, svgPositions[3].sy)}
+                    fill="none"
+                    stroke="#08E26E"
+                    strokeWidth="0.5"
+                    strokeDasharray="4 8"
+                    opacity="0.08"
+                  />
+                  <path
+                    d={arcPath(svgPositions[1].sx, svgPositions[1].sy, svgPositions[5 % svgPositions.length].sx, svgPositions[5 % svgPositions.length].sy)}
+                    fill="none"
+                    stroke="#08E26E"
+                    strokeWidth="0.5"
+                    strokeDasharray="4 8"
+                    opacity="0.08"
+                  />
+                </>
+              )}
+            </g>
+
+            {/* Destination dot markers (SVG layer for glow) */}
+            {svgPositions.map((pos) => (
+              <circle
+                key={`dot-${pos.slug}`}
+                cx={pos.sx}
+                cy={pos.sy}
+                r="3"
+                fill="#08E26E"
+                opacity="0.15"
+                filter="url(#arcGlow)"
+              />
+            ))}
           </svg>
 
-          {/* Destination pins overlaid on the map */}
+          {/* Destination pins (HTML overlay for interactivity) */}
           <div className="absolute inset-0">
             {destinations.map((dest) => {
               const pos = coordsToPosition(dest.coordinates.lat, dest.coordinates.lng)
@@ -117,6 +178,7 @@ export function USMap({ destinations }: USMapProps) {
                 <DestinationPin
                   key={dest.slug}
                   city={dest.city}
+                  airportCode={dest.airportCode}
                   slug={dest.slug}
                   x={pos.x}
                   y={pos.y}
@@ -124,9 +186,17 @@ export function USMap({ destinations }: USMapProps) {
               )
             })}
           </div>
+
+          {/* Corner label */}
+          <div className="absolute top-4 left-5 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-goose-green/60" />
+            <span className="font-mono text-[9px] tracking-widest uppercase text-zinc-600">
+              Route Network
+            </span>
+          </div>
         </div>
 
-        {/* Map legend */}
+        {/* Legend */}
         <div className="flex items-center justify-center gap-6 mt-6">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-goose-green animate-glow-pulse" />

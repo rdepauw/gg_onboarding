@@ -7,12 +7,12 @@ import { Check } from "lucide-react"
 export const metadata: Metadata = generatePageMetadata({
   title: "Join the Waitlist",
   description:
-    "Get early access to Golf Goose AI — personalized practice plans, AI coaching, and 248+ drills, feels & games. Be first in line.",
+    "Get early access to Golf Goose AI. Personalized practice plans, AI coaching, and 250+ drills, feels & games. Be first in line.",
   path: "/waitlist",
 })
 
 const benefits = [
-  "248+ free drills, feels & games",
+  "250+ free drills, feels & games",
   "Early app access before public launch",
   "AI coaching preview",
   "Exclusive member content",

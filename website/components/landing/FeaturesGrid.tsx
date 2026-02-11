@@ -17,7 +17,7 @@ const features = [
   {
     icon: Crosshair,
     title: "Practice Plans",
-    description: "Personalized drills, feels, and games based on your specific swing faults and goals.",
+    description: "Personalized feels, drills, and games based on your specific swing faults and goals.",
     href: "/features/practice-plans",
     span: true,
   },

@@ -16,7 +16,7 @@ interface Message {
 const WELCOME_MESSAGE: Message = {
   role: "assistant",
   content:
-    "Hey! I'm Goose 🪿 — your AI practice coach. Tell me about your swing faults, what went wrong last round, or what part of your game you want to improve. I'll recommend the right drills, feels, and games from our library.",
+    "Hey! I'm Goose 🪿, your AI practice coach. Tell me about your swing faults, what went wrong last round, or what part of your game you want to improve. I'll recommend the right drills, feels, and games from our library.",
 }
 
 interface LibraryItem {

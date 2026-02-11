@@ -11,8 +11,8 @@ export const SITE_CONFIG = {
   },
   social: {
     twitter: "https://twitter.com/golfgooseai",
-    instagram: "https://instagram.com/golfgooseai",
-    tiktok: "https://tiktok.com/@golfgooseai",
+    instagram: "https://www.instagram.com/golfgoose.ai/",
+    tiktok: "https://www.tiktok.com/@golfgoose.ai",
   },
   appStore: {
     ios: "#",
@@ -31,7 +31,6 @@ export const NAV_LINKS = [
       { label: "Library", href: "/features/library", description: "Drills, feels, and games" },
     ],
   },
-  { label: "Pricing", href: "/pricing" },
   { label: "Library", href: "/library" },
   { label: "Blog", href: "/blog" },
   { label: "The Lounge", href: "/travel" },
@@ -45,18 +44,17 @@ export const FOOTER_LINKS = {
     { label: "Round Analysis", href: "/features/round-analysis" },
     { label: "Progress Tracking", href: "/features/progress-tracking" },
     { label: "Library", href: "/features/library" },
+  ],
+  content: [
     { label: "Free Library", href: "/library" },
-    { label: "Pricing", href: "/pricing" },
+    { label: "The Lounge", href: "/travel" },
+    { label: "Blog", href: "/blog" },
   ],
   company: [
     { label: "About", href: "/about" },
-    { label: "Blog", href: "/blog" },
-    { label: "The Lounge", href: "/travel" },
-    { label: "Download", href: "/download" },
-  ],
-  support: [
-    { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "FAQ", href: "/faq" },
     { label: "Waitlist", href: "/waitlist" },
   ],
   legal: [

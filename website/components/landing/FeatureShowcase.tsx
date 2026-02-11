@@ -4,8 +4,9 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { SectionWrapper } from "@/components/shared/SectionWrapper"
-import { fadeInUp, slideInLeft, slideInRight, viewportOnce } from "@/lib/animations"
+import { slideInLeft, slideInRight, viewportOnce } from "@/lib/animations"
 import { GlowOrb } from "@/components/shared/GlowOrb"
+import { AudioSamplePlayer } from "@/components/features/AudioSamplePlayer"
 
 const showcases = [
   {
@@ -20,7 +21,27 @@ const showcases = [
     link: "/features/ai-coach",
     gradient: "from-goose-green/10",
     reversed: false,
-    screenshot: "/images/app/ai-conversation.png",
+    screenshot: "/images/app/practice-library.png",
+    audio: {
+      title: "Post-Round Podcast",
+      description: "AI-generated analysis of your latest round",
+      src: "/audio/sample-pump-up.mp3",
+      artwork: "/images/app/podcast-generated.png",
+    },
+  },
+  {
+    eyebrow: "Content Library",
+    title: "250+ Drills, Feels & Games",
+    description: "Browse the same practice content that powers Golf Goose. Filter by skill category, search for exactly what you need, and build your own collection of go-to drills and feels.",
+    features: [
+      { icon: "📚", label: "Curated Content", detail: "Every item reviewed and tested by real golfers" },
+      { icon: "🔍", label: "Smart Filters", detail: "Find content by skill: putting, short game, approach, off the tee" },
+      { icon: "⭐", label: "Staff Picks", detail: "Our coaches' favorite drills and feels highlighted" },
+    ],
+    link: "/library",
+    gradient: "from-goose-green/10",
+    reversed: true,
+    screenshot: "/images/app/swing-feels.png",
   },
   {
     eyebrow: "Practice Plans",
@@ -33,22 +54,8 @@ const showcases = [
     ],
     link: "/features/practice-plans",
     gradient: "from-goose-mint/5",
-    reversed: true,
-    screenshot: "/images/app/review-tab.png",
-  },
-  {
-    eyebrow: "Round Analysis",
-    title: "Your Round, Replayed",
-    description: "Log your rounds with OCR scorecard scanning, get AI-powered analysis of your patterns, and generate podcast-style recaps that turn your round into an entertaining story.",
-    features: [
-      { icon: "📸", label: "OCR Scorecard", detail: "Snap a photo, we do the rest" },
-      { icon: "📊", label: "AI Analysis", detail: "Pattern recognition across your rounds" },
-      { icon: "🎧", label: "Round Podcast", detail: "Your round turned into entertainment" },
-    ],
-    link: "/features/round-analysis",
-    gradient: "from-goose-green/10",
     reversed: false,
-    screenshot: "/images/app/scorecard-camera.png",
+    screenshot: "/images/app/onboarding-miss.png",
   },
 ]
 
@@ -121,7 +128,7 @@ export function FeatureShowcase() {
               initial="hidden"
               whileInView="visible"
               viewport={viewportOnce}
-              className="relative flex-1 flex justify-center"
+              className="relative flex-1 flex flex-col items-center gap-6"
             >
               <div className="relative">
                 <GlowOrb
@@ -142,6 +149,16 @@ export function FeatureShowcase() {
                   </div>
                 </div>
               </div>
+
+              {/* Audio player (if present) */}
+              {"audio" in item && item.audio && (
+                <AudioSamplePlayer
+                  title={item.audio.title}
+                  description={item.audio.description}
+                  src={item.audio.src}
+                  artwork={item.audio.artwork}
+                />
+              )}
             </motion.div>
           </div>
         ))}

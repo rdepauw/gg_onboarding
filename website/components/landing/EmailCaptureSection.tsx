@@ -22,11 +22,11 @@ export function EmailCaptureSection() {
           Free Practice Library
         </p>
         <h2 className="font-display font-bold text-3xl md:text-4xl tracking-wide text-white mb-4">
-          248+ Drills, Feels &{" "}
+          250+ Drills, Feels &{" "}
           <span style={{ color: "#C3FCD2" }}>Games</span>
         </h2>
         <p className="text-zinc-400 mb-8 max-w-md mx-auto">
-          Get instant access to our curated library of practice content — the same drills and feels used inside the app. Free, no card required.
+          Get instant access to our curated library of practice content. The same drills and feels used inside the app. Free, no card required.
         </p>
 
         <div className="max-w-md mx-auto">

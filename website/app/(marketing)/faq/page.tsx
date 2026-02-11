@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd"
 
 export const metadata: Metadata = generatePageMetadata({
   title: "FAQ",
-  description: "Frequently asked questions about Golf Goose AI — features, pricing, technical details, and more.",
+  description: "Frequently asked questions about Golf Goose AI: features, pricing, technical details, and more.",
   path: "/faq",
 })
 
@@ -14,8 +14,8 @@ const faqCategories = [
     category: "General",
     questions: [
       { q: "What is Golf Goose?", a: "Golf Goose is an AI-powered golf improvement app that connects your practice, rounds, and coaching into one seamless system. Think of it as a personal golf coach in your pocket." },
-      { q: "Who is Golf Goose for?", a: "Any golfer looking to improve — from beginners trying to break 100 to single-digit handicaps chasing scratch. If you practice and play, Golf Goose will help you do both smarter." },
-      { q: "What makes Golf Goose different from other golf apps?", a: "Most golf apps do one thing — track scores, or provide drills, or offer coaching. Golf Goose connects all three. Your practice informs your coaching, your rounds inform your practice, and your AI coach ties it all together." },
+      { q: "Who is Golf Goose for?", a: "Any golfer looking to improve, from beginners trying to break 100 to single-digit handicaps chasing scratch. If you practice and play, Golf Goose will help you do both smarter." },
+      { q: "What makes Golf Goose different from other golf apps?", a: "Most golf apps do one thing: track scores, or provide drills, or offer coaching. Golf Goose connects all three. Your practice informs your coaching, your rounds inform your practice, and your AI coach ties it all together." },
     ],
   },
   {
@@ -29,7 +29,7 @@ const faqCategories = [
   {
     category: "Pricing",
     questions: [
-      { q: "How much does Golf Goose cost?", a: "Golf Goose has a free tier with basic features. First Class (premium) is $9.99/month or $99.99/year, which saves you ~17%. That's less than a bucket of range balls." },
+      { q: "How much does Golf Goose cost?", a: "Golf Goose has a free tier with basic features. First Class (premium) is $9.99/month or $72/year, which saves you 40%. That's less than a bucket of range balls." },
       { q: "Is there a free trial?", a: "Yes! First Class comes with a 7-day free trial. You can explore all premium features before committing." },
       { q: "Can I cancel my subscription?", a: "Absolutely. Cancel anytime from within the app. No hidden fees, no penalties, no questions asked." },
     ],
@@ -38,7 +38,6 @@ const faqCategories = [
     category: "Technical",
     questions: [
       { q: "What devices does Golf Goose work on?", a: "Golf Goose is available on iOS. A web experience is coming soon." },
-      { q: "Does it work offline?", a: "Your logged data is available offline. AI coaching features and syncing require an internet connection." },
       { q: "Is my data secure?", a: "Yes. We use industry-standard encryption and never share your personal data with third parties. See our Privacy Policy for full details." },
     ],
   },

@@ -7,13 +7,6 @@ import { fadeInUp, viewportOnce } from "@/lib/animations"
 
 const testimonials = [
   {
-    flightCode: "GG-247",
-    quote: "Goose's pre-round pump ups completely changed my mindset on the first tee. I finally stopped dreading my driver.",
-    name: "Mark T.",
-    handicap: "18 → 14",
-    rating: 5,
-  },
-  {
     flightCode: "GG-389",
     quote: "The personalized drills for my slice actually worked. Within two weeks, my miss went from a 30-yard banana to a gentle fade.",
     name: "Sarah K.",
@@ -22,7 +15,7 @@ const testimonials = [
   },
   {
     flightCode: "GG-156",
-    quote: "I've tried every golf app. This is the first one that connects everything — my practice, my rounds, and real coaching advice.",
+    quote: "I've tried every golf app. This is the first one that connects everything: my practice, my rounds, and real coaching advice.",
     name: "James R.",
     handicap: "12 → 9",
     rating: 5,
@@ -35,17 +28,24 @@ const testimonials = [
     rating: 5,
   },
   {
-    flightCode: "GG-078",
-    quote: "For $10/month, this replaced my $150/month lesson package. The drills-feels-games approach is exactly what my coach used to give me.",
-    name: "Chris M.",
-    handicap: "22 → 16",
-    rating: 5,
-  },
-  {
     flightCode: "GG-934",
     quote: "Finally broke 80 for the first time after using Golf Goose for three months. The flight plan goal tracking kept me accountable.",
     name: "Tom W.",
     handicap: "11 → 7",
+    rating: 5,
+  },
+  {
+    flightCode: "GG-271",
+    quote: "The pre-round pump up completely changed my mental game. I step onto the first tee with a clear plan instead of just hoping for the best.",
+    name: "Michelle P.",
+    handicap: "18 → 14",
+    rating: 5,
+  },
+  {
+    flightCode: "GG-648",
+    quote: "My range sessions used to be aimless bucket-hitting. Now every practice has structure and I can actually see what's improving week to week.",
+    name: "Chris M.",
+    handicap: "8 → 5",
     rating: 5,
   },
 ]

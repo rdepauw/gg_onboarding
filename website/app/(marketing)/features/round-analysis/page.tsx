@@ -36,7 +36,7 @@ export default function RoundAnalysisPage() {
       <FeatureDetailSection
         eyebrow="AI Analysis"
         title="Patterns You Can't See"
-        description="AI analyzes your rounds over time to spot patterns — which holes give you trouble, where you lose strokes, and what's actually improving."
+        description="AI analyzes your rounds over time to spot patterns: which holes give you trouble, where you lose strokes, and what's actually improving."
         details={[
           { icon: "🧠", title: "Pattern Recognition", description: "Trends across dozens of rounds" },
           { icon: "📉", title: "Stroke Analysis", description: "Where you're losing and gaining strokes" },

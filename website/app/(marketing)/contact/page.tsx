@@ -5,10 +5,44 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { GlowOrb } from "@/components/shared/GlowOrb"
 import Link from "next/link"
-import { SITE_CONFIG } from "@/lib/constants"
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setLoading(true)
+    setError("")
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          subject: formData.get("subject"),
+          message: formData.get("message"),
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || "Something went wrong.")
+      }
+
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.")
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <section className="relative pt-32 pb-24 md:pt-40 overflow-hidden">
@@ -35,23 +69,26 @@ export default function ContactPage() {
           </div>
         ) : (
           <form
-            onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }}
+            onSubmit={handleSubmit}
             className="rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-black p-8 space-y-5"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-2 block">Name</label>
-                <Input placeholder="Your name" required />
+                <Input name="name" placeholder="Your name" required />
               </div>
               <div>
                 <label className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-2 block">Email</label>
-                <Input type="email" placeholder="your@email.com" required />
+                <Input name="email" type="email" placeholder="your@email.com" required />
               </div>
             </div>
 
             <div>
               <label className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-2 block">Subject</label>
-              <select className="flex h-11 w-full rounded-xl border border-zinc-700 bg-zinc-800/80 px-4 py-2 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-goose-green/50">
+              <select
+                name="subject"
+                className="flex h-11 w-full rounded-xl border border-zinc-700 bg-zinc-800/80 px-4 py-2 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-goose-green/50"
+              >
                 <option value="general">General Question</option>
                 <option value="support">Technical Support</option>
                 <option value="billing">Billing</option>
@@ -63,6 +100,7 @@ export default function ContactPage() {
             <div>
               <label className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-2 block">Message</label>
               <textarea
+                name="message"
                 rows={5}
                 required
                 placeholder="Tell us what's on your mind..."
@@ -70,8 +108,12 @@ export default function ContactPage() {
               />
             </div>
 
-            <Button type="submit" variant="cta" size="lg" className="w-full">
-              Send Message
+            {error && (
+              <p className="text-sm text-red-400">{error}</p>
+            )}
+
+            <Button type="submit" variant="cta" size="lg" className="w-full" disabled={loading}>
+              {loading ? "Sending..." : "Send Message"}
             </Button>
           </form>
         )}

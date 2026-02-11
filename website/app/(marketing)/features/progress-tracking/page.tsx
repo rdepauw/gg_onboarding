@@ -24,7 +24,7 @@ export default function ProgressTrackingPage() {
       <FeatureDetailSection
         eyebrow="Dashboard"
         title="Your Command Center"
-        description="One screen to see everything — recent activity, upcoming goals, quick actions, and your overall progress trajectory."
+        description="One screen to see everything: recent activity, upcoming goals, quick actions, and your overall progress trajectory."
         details={[
           { icon: "📊", title: "Progress Graphs", description: "Handicap trends and scoring averages over time" },
           { icon: "📅", title: "Activity Calendar", description: "See rounds, practice, and mock swings at a glance" },
@@ -38,7 +38,7 @@ export default function ProgressTrackingPage() {
         title="Set Your Course"
         description="Set scoring goals, practice frequency targets, handicap milestones, and birdie counts. Watch your flight path visualization as you close the gap between current and goal."
         details={[
-          { icon: "🎯", title: "Scoring Goals", description: "Break 100, 90, 80, or par — your target" },
+          { icon: "🎯", title: "Scoring Goals", description: "Break 100, 90, 80, or par. Set your target" },
           { icon: "✈️", title: "Flight Path", description: "Visual progress line from current to goal handicap" },
           { icon: "🐦", title: "Birdie Tracker", description: "Count birdies for the year with fun milestones" },
         ]}

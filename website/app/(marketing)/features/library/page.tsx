@@ -6,7 +6,7 @@ import { FeatureCTA } from "@/components/features/FeatureCTA"
 import { CrossLinkGrid } from "@/components/features/CrossLinkGrid"
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "The Hangar — Drills, Feels & Games Library",
+  title: "The Hangar: Drills, Feels & Games Library",
   description: "Browse a searchable library of golf drills, feels, and practice games. Filter by skill category and save your favorites.",
   path: "/features/library",
 })
@@ -18,7 +18,7 @@ export default function LibraryPage() {
         eyebrow="The Hangar"
         title="Your Practice"
         titleAccent="Library"
-        description="A growing collection of drills, feels, and practice games — searchable, filterable, and personalized to your game."
+        description="A growing collection of drills, feels, and practice games, searchable, filterable, and personalized to your game."
       />
 
       <FeatureDetailSection
@@ -36,7 +36,7 @@ export default function LibraryPage() {
       <FeatureDetailSection
         eyebrow="Organization"
         title="Find What You Need"
-        description="Filter by skill category — off the tee, approach, short game, or putting. Search by keyword, browse favorites, or discover new content based on your practice plan."
+        description="Filter by skill category: off the tee, approach, short game, or putting. Search by keyword, browse favorites, or discover new content based on your practice plan."
         details={[
           { icon: "🔍", title: "Search & Filter", description: "By skill, type, keyword, or favorites" },
           { icon: "⭐", title: "Favorites", description: "Save your go-to drills for quick access" },

@@ -43,6 +43,7 @@ export interface GolfDestination {
   slug: string;
   city: string;
   state: string;
+  airportCode: string; // real airport code: "PHX", "MYR", etc.
   coordinates: { lat: number; lng: number };
   tagline: string;
   flightCode: string; // airline theme: "GG-SCO", "GG-MYR"

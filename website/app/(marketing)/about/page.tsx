@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { generatePageMetadata } from "@/lib/metadata"
 import { FeatureHero } from "@/components/features/FeatureHero"
 import { TicketDivider } from "@/components/shared/TicketDivider"
@@ -14,17 +15,19 @@ const team = [
     name: "Ryan DePauw",
     role: "Co-Founder & CEO",
     initials: "RD",
-    swingFault: "Early Extension",
-    homeCourse: "Cantigny Golf",
-    goToFeel: "Swinging to Right Field",
+    photo: "/images/team/ryan.jpg",
+    swingFault: "Slice",
+    favoriteCourse: "Chambers Bay",
+    goToFeel: "Stay Closed to the Target",
   },
   {
     name: "Tim Hsu",
-    role: "Co-Founder & CTO",
+    role: "Co-Founder & GTM",
     initials: "TH",
-    swingFault: "Over the Top",
-    homeCourse: "Cog Hill",
-    goToFeel: "Throwing a Frisbee",
+    photo: "/images/team/tim.jpg",
+    swingFault: "Hook",
+    favoriteCourse: "Pebble Beach",
+    goToFeel: "3/4 Swing",
   },
 ]
 
@@ -57,7 +60,35 @@ export default function AboutPage() {
               Most golfers practice without a plan, play without reviewing, and have no connection between their range time and course performance. We built Golf Goose to change that.
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              By connecting personalized practice plans, intelligent round analysis, and an AI coach that actually knows your game, we&apos;re creating the improvement system that every golfer deserves — not just those who can afford a $200/hour swing coach.
+              By connecting personalized practice plans, intelligent round analysis, and an AI coach that actually knows your game, we&apos;re creating the improvement system that every golfer deserves. Not just those who can afford a $200/hour swing coach.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <TicketDivider className="max-w-3xl mx-auto px-6" />
+
+      {/* Why Golf Goose */}
+      <section className="py-20">
+        <div className="mx-auto max-w-3xl px-6 md:px-8">
+          <div className="rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-black p-8 md:p-12">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="font-mono text-[10px] tracking-flight uppercase text-goose-green">
+                Origin Story
+              </span>
+              <div className="flex-1 border-t border-dashed border-zinc-800" />
+            </div>
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-white mb-4">
+              Why We Call It Golf Goose
+            </h2>
+            <p className="text-zinc-400 leading-relaxed mb-4">
+              Every golfer needs a co-pilot. Someone in their corner for practice, for rounds, for the mental game. And who is the most famous co-pilot of all time? Goose.
+            </p>
+            <p className="text-zinc-400 leading-relaxed mb-4">
+              He&apos;s your practicing, playing, performance co-pilot.
+            </p>
+            <p className="text-zinc-400 leading-relaxed italic">
+              &ldquo;Talk to me, Goose.&rdquo;
             </p>
           </div>
         </div>
@@ -83,8 +114,18 @@ export default function AboutPage() {
               >
                 {/* Header: Avatar + Name/Role */}
                 <div className="flex items-center gap-5 mb-6">
-                  <div className="w-16 h-16 shrink-0 rounded-full bg-goose-void border border-goose-mint/30 flex items-center justify-center">
-                    <span className="font-mono text-lg font-bold text-goose-mint">{member.initials}</span>
+                  <div className="w-16 h-16 shrink-0 rounded-full bg-goose-void border border-goose-mint/30 overflow-hidden flex items-center justify-center">
+                    {member.photo ? (
+                      <Image
+                        src={member.photo}
+                        alt={member.name}
+                        width={64}
+                        height={64}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span className="font-mono text-lg font-bold text-goose-mint">{member.initials}</span>
+                    )}
                   </div>
                   <div>
                     <h3 className="font-display font-bold text-lg text-white">{member.name}</h3>
@@ -105,9 +146,9 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <p className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-1">
-                      Home Course
+                      Favorite Course
                     </p>
-                    <p className="font-mono text-sm text-zinc-300">{member.homeCourse}</p>
+                    <p className="font-mono text-sm text-zinc-300">{member.favoriteCourse}</p>
                   </div>
                   <div>
                     <p className="font-mono text-[10px] tracking-flight uppercase text-zinc-500 mb-1">

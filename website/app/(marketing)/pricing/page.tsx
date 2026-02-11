@@ -23,7 +23,7 @@ const features = [
 const faqs = [
   { q: "Is there a free trial?", a: "Yes! Every subscription starts with a 7-day free trial. Cancel anytime before the trial ends and you won't be charged." },
   { q: "Can I cancel anytime?", a: "Absolutely. Cancel your subscription at any time directly from the app. No hidden fees or cancellation penalties." },
-  { q: "What's the difference between monthly and annual?", a: "Annual billing saves you 40% compared to monthly — that's $47.88 in savings per year." },
+  { q: "What's the difference between monthly and annual?", a: "Annual billing saves you 40% compared to monthly. That's $47.88 in savings per year." },
   { q: "Do I need an internet connection?", a: "An internet connection is needed for AI coaching and syncing. Your logged data is available offline." },
 ]
 
@@ -91,7 +91,7 @@ export default function PricingPage() {
               </div>
               {annual && (
                 <p className="text-goose-green text-sm mt-2 font-mono">
-                  Just $6/month — save $47.88/year
+                  Just $6/month. Save $47.88/year
                 </p>
               )}
               {!annual && (
@@ -112,7 +112,7 @@ export default function PricingPage() {
               </ul>
             </div>
 
-            <Link href="/download">
+            <Link href="/waitlist">
               <Button variant="cta" size="lg" className="w-full">
                 Start 7-Day Free Trial
               </Button>

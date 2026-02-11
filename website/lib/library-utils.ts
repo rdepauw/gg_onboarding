@@ -27,6 +27,16 @@ export function getYouTubeId(url: string): string | null {
   return match ? match[1] : null
 }
 
+export function getYouTubeTimestamp(url: string): number | null {
+  const match = url.match(/[?&]t=(\d+)/)
+  return match ? parseInt(match[1], 10) : null
+}
+
+export function buildYouTubeUrl(videoId: string, timestampSeconds?: number): string {
+  const base = `https://www.youtube.com/watch?v=${videoId}`
+  return timestampSeconds ? `${base}&t=${timestampSeconds}` : base
+}
+
 // ── Type Color Configuration ──────────────────────────────────────────
 
 export const typeColors = {

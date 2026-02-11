@@ -4,7 +4,6 @@ import { HowItWorks } from "@/components/landing/HowItWorks"
 import { FeatureShowcase } from "@/components/landing/FeatureShowcase"
 import { FeaturesGrid } from "@/components/landing/FeaturesGrid"
 import { TestimonialsCarousel } from "@/components/landing/TestimonialsCarousel"
-import { PricingTeaser } from "@/components/landing/PricingTeaser"
 import { EmailCaptureSection } from "@/components/landing/EmailCaptureSection"
 import { FinalCTA } from "@/components/landing/FinalCTA"
 import { TicketDivider } from "@/components/shared/TicketDivider"
@@ -24,8 +23,6 @@ export default function HomePage() {
       <TestimonialsCarousel />
       <TicketDivider className="max-w-6xl mx-auto px-6" />
       <EmailCaptureSection />
-      <TicketDivider className="max-w-6xl mx-auto px-6" />
-      <PricingTeaser />
       <FinalCTA />
     </>
   )

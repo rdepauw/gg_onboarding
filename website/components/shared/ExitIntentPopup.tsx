@@ -71,10 +71,10 @@ export function ExitIntentPopup() {
 
             <p className="text-3xl mb-3">🪿</p>
             <h3 className="font-display font-bold text-xl text-white mb-2">
-              Wait — Free Drills Before You Go
+              Wait! Free Drills Before You Go
             </h3>
             <p className="text-sm text-zinc-400 mb-6">
-              Get instant access to 248+ golf drills, feels, and practice games. No card required.
+              Get instant access to 250+ golf drills, feels, and practice games. No card required.
             </p>
 
             <EmailCapture

@@ -9,10 +9,10 @@ export function BlogEmailCTA() {
         Free Practice Library
       </p>
       <h3 className="font-display font-bold text-xl text-white mb-2">
-        248+ Drills, Feels & Games
+        250+ Drills, Feels & Games
       </h3>
       <p className="text-sm text-zinc-400 mb-6">
-        Liked this article? Get free access to our full library of practice content — the same drills and feels used inside Golf Goose.
+        Liked this article? Get free access to our full library of practice content. The same drills and feels used inside Golf Goose.
       </p>
       <div className="max-w-sm mx-auto">
         <EmailCapture

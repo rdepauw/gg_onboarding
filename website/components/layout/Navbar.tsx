@@ -112,7 +112,7 @@ export function Navbar() {
 
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-3">
-              <Link href="/download">
+              <Link href="/waitlist">
                 <Button variant="cta" size="sm">
                   Board Now
                 </Button>
@@ -182,7 +182,7 @@ export function Navbar() {
                 transition={{ delay: NAV_LINKS.length * 0.08 }}
                 className="mt-4"
               >
-                <Link href="/download" onClick={() => setMobileOpen(false)}>
+                <Link href="/waitlist" onClick={() => setMobileOpen(false)}>
                   <Button variant="cta" size="lg">Board Now</Button>
                 </Link>
               </motion.div>

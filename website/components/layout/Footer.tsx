@@ -5,8 +5,8 @@ import { TicketDivider } from "@/components/shared/TicketDivider"
 
 const footerSections = [
   { title: "Product", links: FOOTER_LINKS.product },
+  { title: "Content", links: FOOTER_LINKS.content },
   { title: "Company", links: FOOTER_LINKS.company },
-  { title: "Support", links: FOOTER_LINKS.support },
   { title: "Legal", links: FOOTER_LINKS.legal },
 ]
 

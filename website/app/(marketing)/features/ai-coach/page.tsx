@@ -9,7 +9,7 @@ import { PreRoundPumpSection } from "@/components/features/ai-coach/PreRoundPump
 import { GooseDifferentiators } from "@/components/features/ai-coach/GooseDifferentiators"
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "AI Coach — Talk to me, Goose!",
+  title: "AI Coach: Talk to me, Goose!",
   description: "Meet Goose, your AI golf coach. Get personalized pre-round pump ups, post-round podcast recaps, and AI conversations that actually know your game.",
   path: "/features/ai-coach",
 })

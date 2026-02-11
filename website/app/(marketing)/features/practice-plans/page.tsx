@@ -24,7 +24,7 @@ export default function PracticePlansPage() {
       <FeatureDetailSection
         eyebrow="Diagnosis"
         title="Identify Your Faults"
-        description="Choose from common swing faults — slice, hook, fat shots, thin shots, chipping yips, three-putts, shanks, and tempo issues. Your plan adapts to exactly what you struggle with."
+        description="Choose from common swing faults: slice, hook, fat shots, thin shots, chipping yips, three-putts, shanks, and tempo issues. Your plan adapts to exactly what you struggle with."
         details={[
           { icon: "🎯", title: "8 Common Faults", description: "Cover every major miss pattern in golf" },
           { icon: "🔍", title: "Multi-Select", description: "Pick all the faults that apply to you" },
@@ -36,7 +36,7 @@ export default function PracticePlansPage() {
       <FeatureDetailSection
         eyebrow="Drills"
         title="Drills That Actually Work"
-        description="Each fault gets targeted drills with clear instructions. No generic tips — specific exercises designed for your exact miss pattern."
+        description="Each fault gets targeted drills with clear instructions. No generic tips. Specific exercises designed for your exact miss pattern."
         details={[
           { icon: "🎯", title: "Targeted Exercises", description: "Gate drills, alignment checks, and path correction work" },
           { icon: "📐", title: "Clear Instructions", description: "Step-by-step setup and execution for every drill" },

@@ -9,14 +9,14 @@ const zones = [
   {
     zone: "01",
     title: "Tell Us Your Miss",
-    description: "Select the swing faults you fight most — slice, hook, fat shots, and more. Our AI diagnoses your patterns.",
+    description: "Select the swing faults you fight most: slice, hook, fat shots, and more. Our AI diagnoses your patterns.",
     icon: Target,
     color: "text-goose-green",
   },
   {
     zone: "02",
     title: "Get Your Flight Plan",
-    description: "Receive a personalized practice plan with drills, feels, and games designed specifically for your misses.",
+    description: "Receive a personalized practice plan with drills, feels, and games tailored to your misses.",
     icon: Plane,
     color: "text-goose-mint",
     featured: true,

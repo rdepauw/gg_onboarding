@@ -7,7 +7,7 @@ import { FeatureCTA } from "@/components/features/FeatureCTA"
 
 export const metadata: Metadata = generatePageMetadata({
   title: "Features",
-  description: "Explore all Golf Goose AI features — AI coaching, personalized practice plans, round analysis, progress tracking, and more.",
+  description: "Explore all Golf Goose AI features: AI coaching, personalized practice plans, round analysis, progress tracking, and more.",
   path: "/features",
 })
 

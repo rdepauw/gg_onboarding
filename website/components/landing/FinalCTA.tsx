@@ -34,7 +34,7 @@ export function FinalCTA() {
         </h2>
 
         <p className="text-zinc-400 text-lg mb-10 max-w-md mx-auto">
-          Get early access to Golf Goose plus our free library of 248+ drills, feels, and games.
+          Get early access to Golf Goose plus our free library of 250+ drills, feels, and games.
         </p>
 
         <div className="max-w-md mx-auto mb-8">

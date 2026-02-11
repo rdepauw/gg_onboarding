@@ -79,11 +79,11 @@ export function PostRoundPodcastSection() {
             <div className="relative w-60 md:w-64 rounded-[2.5rem] border-2 border-zinc-700 bg-gradient-to-br from-zinc-800 to-zinc-900 p-3 shadow-2xl shadow-black/50">
               <div className="rounded-[2rem] bg-goose-void overflow-hidden aspect-[9/19]">
                 <Image
-                  src="/images/app/post-round-pod.jpg"
+                  src="/images/app/podcast-generated.png"
                   alt="Post-round podcast generation screen in GolfGoose"
                   width={390}
                   height={844}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain object-top"
                 />
               </div>
             </div>

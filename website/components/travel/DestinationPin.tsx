@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 interface DestinationPinProps {
   city: string
+  airportCode: string
   slug: string
   /** X position as percentage of map width (0-100) */
   x: number
@@ -12,7 +13,7 @@ interface DestinationPinProps {
   y: number
 }
 
-export function DestinationPin({ city, slug, x, y }: DestinationPinProps) {
+export function DestinationPin({ city, airportCode, slug, x, y }: DestinationPinProps) {
   const [isHovered, setIsHovered] = useState(false)
 
   const handleClick = () => {
@@ -55,7 +56,12 @@ export function DestinationPin({ city, slug, x, y }: DestinationPinProps) {
         transition={{ type: "spring", stiffness: 400, damping: 15 }}
       />
 
-      {/* Tooltip */}
+      {/* Airport code label (always visible) */}
+      <span className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 whitespace-nowrap font-mono text-[9px] tracking-wider uppercase text-goose-green/70 pointer-events-none">
+        {airportCode}
+      </span>
+
+      {/* Tooltip with full city name */}
       <AnimatePresence>
         {isHovered && (
           <motion.span
